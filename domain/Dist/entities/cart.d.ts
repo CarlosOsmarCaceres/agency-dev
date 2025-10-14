@@ -3,3 +3,4 @@ export interface Cart {
     userId: string;
     provisionIds: string[];
 }
+//# sourceMappingURL=cart.d.ts.map
