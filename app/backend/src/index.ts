@@ -1,2 +1,2 @@
 import { saludo } from '../../../domain/Dist/index.js';
-console.log(saludo)
+console.log("Priemr commite",saludo)
