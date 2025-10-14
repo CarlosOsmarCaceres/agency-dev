@@ -9,16 +9,6 @@
 
 
 
-## 🏁 Empezando
-
-Estas instrucciones te permitirán obtener una copia del proyecto en funcionamiento en tu máquina local para propósitos de desarrollo y pruebas.
-
-### Pre-requisitos
-
-Lo que necesitas para instalar el software y cómo instalarlo.
-
-```bash
-# Ejemplo para Node.js
-npm install npm@latest -g
-# Ejemplo para Node.js
-#
+## Para investigar
+* averiguar para hacer que mi dominio sea una depéndencia
+![alt text](image.png)
