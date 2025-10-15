@@ -17,13 +17,17 @@ backend: node dist/index.js # Para correr el script
                 index.ts
  . tsc -p .                 # transpilar cada vez que hacemos un new file ts
 
- # Carpeta entities
+# Carpeta entities
     Aqui va toda la logica de interfaces
 # Carpeta use-cases
     Aqui va toda la logica de lo que hay que hacer.
     Tambien va el archivo spec.ts para hacer los test
     Instalamos la dependencia con el sigueinte comando
 . npm install -D vitest
+en package.json agregar  
+"scripts": {
+    "test": "vitest"
+  },
 
 
 

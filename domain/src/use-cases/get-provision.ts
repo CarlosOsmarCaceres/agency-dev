@@ -4,7 +4,6 @@ interface  ProvisionService {
     getById(id: string): Promise<Provision | undefined>;
 }
 
-
 interface  GetProvisionData {
     dependencies: { provisionService: ProvisionService };
     payload: {
@@ -14,6 +13,6 @@ interface  GetProvisionData {
 
 export async function getProvision({ dependencies, payload }: GetProvisionData){
     await dependencies.provisionService.getById(payload.id);  
-    return payload.id;
+    return {id: payload.id};
 
 }
