@@ -1,20 +1,12 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
 // Aqui es donde vamos a pensar casos de exito y de error, que es lo que esperamo y que 
-import { describe, expect, test } from 'vitest';
-import { getProvision } from './get-provision';
-import { Provision, Provision as ProvisionEntity } from '../entities';
-                                             
-/* type Provision = {
-    id: string;
-    title: string;
-    description: string;                                                     
-    price: number;
-    clientId: string;
-}; */
-
-const dataProvision: Provision[] = [
+const vitest_1 = require("vitest");
+const get_provision_1 = require("./get-provision");
+const dataProvision = [
     {
         id: '1',
-        title: 'Sample Provision',  
+        title: 'Sample Provision',
         description: 'This is a sample provision description.',
         price: 100,
         clientId: '1'
@@ -32,37 +24,40 @@ const dataProvision: Provision[] = [
         description: 'This is the third provision description.',
         price: 300,
         clientId: '1'
-    }   
-]
-
-describe('Get Provision Use Case', async () => {
+    }
+];
+(0, vitest_1.describe)('Get Provision Use Case', async () => {
     // 1. Creación de un "Mock" o "Doble de Prueba"
     const provisionService = {
-        getByIdd: async (id: string) => {
+        getByIdd: async (id) => {
             return dataProvision.find((provisionn) => provisionn.id == id);
         },
     };
-
     // 2. Test del caso de éxito
-    test('Con un id va a obtener la informacion de un provision', async () => {
+    (0, vitest_1.test)('Con un id va a obtener la informacion de un provision', async () => {
         // 3. Ejecución del caso de uso
-        const result = await getProvision({ 
+        const result = await (0, get_provision_1.getProvision)({
             dependencies: { provisionService }, // 4. Inyección de la dependencia
-            payload: { id: '1', title: 'Sample Provision', description: 'This is a sample provision description.', price: 100, clientId: '1' }
+            payload: { id: '1' }
         });
-        
         // 5. Verificación (Assertion)
-        expect(result).toStrictEqual({
+        (0, vitest_1.expect)(result).toStrictEqual({
             id: '1',
             title: 'Sample Provision',
             description: 'This is a sample provision description.',
             price: 100,
             clientId: '1'
         });
-    }); 
-    
+    });
     // 6. Test del caso de error (pendiente)
-    test('Con un id invalido deberia devolver un error', async () => {
-        // Aquí iría la lógica para probar qué pasa si el id no existe
-    }); 
+    (0, vitest_1.test)('Con un id invalido deberia devolver un error', async () => {
+        const result = await (0, get_provision_1.getProvision)({
+            dependencies: { provisionService }, // 4. Inyección de la dependencia
+            payload: {
+                id: "4",
+            },
+        });
+        (0, vitest_1.expect)(result).toBeInstanceOf(Error);
+    });
 });
+//# sourceMappingURL=get-provision.spec.js.map

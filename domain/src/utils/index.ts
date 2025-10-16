@@ -1,0 +1,1 @@
+// validaciones y utilidades generales del dominio
