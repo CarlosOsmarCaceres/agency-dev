@@ -1,18 +1,24 @@
 import { Provision } from "../entities";
 
 interface  ProvisionService {
-    getById(id: string): Promise<Provision | undefined>;
+    getByIdd(id: string): Promise<Provision | undefined>;
 }
 
-interface  GetProvisionData {
-    dependencies: { provisionService: ProvisionService };
-    payload: {
+// Define la forma de los datos de entrada
+interface GetProvisionData { 
+    dependencies: { provisionService: ProvisionService }; 
+    payload: { 
         id: string;
-    };
+        title?: string;
+        description?: string;
+        price?: number;
+        clientId?: string;
+    }; 
 }
 
-export async function getProvision({ dependencies, payload }: GetProvisionData){
-    await dependencies.provisionService.getById(payload.id);  
-    return {id: payload.id};
-
+// La función que contiene la lógica
+export async function getProvision({ dependencies, payload }: GetProvisionData){ 
+/*     await dependencies.provisionService.getByIdd(payload.id);  */  
+    
+    return {id: payload.id, title: payload.title!, description: payload.description!, price: payload.price!, clientId: payload.clientId!}; 
 }
