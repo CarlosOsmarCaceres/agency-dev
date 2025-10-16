@@ -1,0 +1,1 @@
+{"version":3,"file":"get-provision.d.ts","sourceRoot":"","sources":["../../src/use-cases/get-provision.ts"],"names":[],"mappings":"AACA,OAAO,EAAE,gBAAgB,EAAE,MAAM,+BAA+B,CAAC;AAGjE,UAAU,gBAAgB;IACtB,YAAY,EAAE;QAAE,gBAAgB,EAAE,gBAAgB,CAAA;KAAE,CAAC;IACrD,OAAO,EAAE;QACL,EAAE,EAAE,MAAM,CAAC;KAEd,CAAC;CACL;AAGD,wBAAsB,YAAY,CAAC,EAAE,YAAY,EAAE,OAAO,EAAE,EAAE,gBAAgB;;;;;;GAQ7E"}

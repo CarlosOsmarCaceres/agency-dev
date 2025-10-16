@@ -16,4 +16,7 @@ var __exportStar = (this && this.__exportStar) || function(m, exports) {
 Object.defineProperty(exports, "__esModule", { value: true });
 // archivo principal donde se va a cargar todos los demas archivos que se van a compilar o utilizar en otros proyectos
 __exportStar(require("./entities/index.js"), exports);
+__exportStar(require("./services/index.js"), exports);
+__exportStar(require("./use-cases/index.js"), exports);
+__exportStar(require("./utils/index.js"), exports);
 //# sourceMappingURL=index.js.map
