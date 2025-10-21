@@ -1,4 +1,4 @@
-import { Entity } from "../utils/type/entity.js";
+import { Entity } from "../../utils/type/entity.js";
 
 // El plan de mantenimiento es el producto RECURRENTE (mensual).
 export const MaintenancePlanLevels = {

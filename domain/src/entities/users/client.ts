@@ -1,4 +1,4 @@
-import { Entity } from "../utils/type/entity";
+import { Entity } from "../../utils/type/entity";
 import { User } from "./user";
 
 // La entidad Client guarda datos específicos del cliente.

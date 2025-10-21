@@ -1,4 +1,4 @@
-import { Entity } from "../utils/type/entity.js";
+import { Entity } from "../../utils/type/entity.js";
 // Tipos para los roles que ya discutimos. Es bueno tenerlos cerca de User.
 export const UserRoles = {
     ADMIN: "Administrador",

@@ -1,4 +1,4 @@
-import { Entity } from "../utils/type/entity.js";
+import { Entity } from "../../utils/type/entity.js";
 import { Category } from "./category.js";
 
 

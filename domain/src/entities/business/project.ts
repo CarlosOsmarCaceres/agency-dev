@@ -1,8 +1,8 @@
-import { Entity } from "../utils/type/entity";
-import { Client } from "./client";
-import { MaintenancePlan } from "./maintenance-plan";
-import { Service } from "./services";
-import { User } from "./user";
+import { Entity } from "../../utils/type/entity";
+import { Client } from "../users/client";
+import { MaintenancePlan } from "../catalog/maintenance-plan";
+import { Service } from "../catalog/services";
+import { User } from "../users/user";
 
 // Tipos para el estado del proyecto.
 export const ProjectStatuses = {
