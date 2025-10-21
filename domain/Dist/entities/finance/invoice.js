@@ -1,7 +1,4 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.InvoiceStatuses = void 0;
-exports.InvoiceStatuses = {
+export const InvoiceStatuses = {
     DRAFT: "Borrador", // Creada pero no enviada
     PENDING: "Pendiente", // Enviada, esperando pago
     PAID: "Pagada", // El pago fue completado
