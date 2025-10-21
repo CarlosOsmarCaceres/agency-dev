@@ -1,1 +1,0 @@
-{"version":3,"file":"invoice.js","sourceRoot":"","sources":["../../../src/entities/finance/invoice.ts"],"names":[],"mappings":";;;AAIa,QAAA,eAAe,GAAG;IAC3B,KAAK,EAAE,UAAU,EAAO,yBAAyB;IACjD,OAAO,EAAE,WAAW,EAAI,0BAA0B;IAClD,IAAI,EAAE,QAAQ,EAAU,yBAAyB;IACjD,OAAO,EAAE,SAAS,EAAM,+BAA+B;IACvD,SAAS,EAAE,SAAS;CACd,CAAC"}
