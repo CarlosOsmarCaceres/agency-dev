@@ -1,12 +1,18 @@
 import { describe, it, expect, beforeEach } from 'vitest';
-import { LoginUseCase } from './login';
-import { IUserRepository } from '../repositories/user-repository';
-import { IEncrypter } from '../services/encrypter';
-import { IAuthenticator } from '../services/authenticator';
-import { User, UserRole, UserRoles } from '../entities/users/user';
+import { LoginUseCase } from './login.js';
+import { IUserRepository } from '../services/user-service.js';
+import { IEncrypter } from '../services/encrypter.js';
+import { IAuthenticator } from '../services/authenticator.js';
+import { User, UserRole, UserRoles } from '../entities/users/user.js';
 // --- Mocks ---
 // Usaremos los mismos mocks de antes, pero con pequeñas adaptaciones.
 class InMemoryUserRepository implements IUserRepository {
+    findById(id: string): Promise<User | null> {
+        throw new Error('Method not implemented.');
+    }
+    update(user: User): Promise<User> {
+        throw new Error('Method not implemented.');
+    }
     public users: User[] = [];
     async findByEmail(email: string): Promise<User | null> {
         return this.users.find(user => user.email === email) || null;
@@ -57,7 +63,7 @@ describe('Login Use Case', () => {
         });
     });
 
-    it('should authenticate the user and return a token on successful login', async () => {
+    it('Login1 - should authenticate the user and return a token on successful login', async () => {
         const input = {
             email: 'test@example.com',
             password: 'correct_password',
@@ -68,7 +74,7 @@ describe('Login Use Case', () => {
         expect(token).toBe('token_for_123');
     });
 
-    it('should throw an error for an incorrect password', async () => {
+    it('Login2 - should throw an error for an incorrect password', async () => {
         const input = {
             email: 'test@example.com',
             password: 'wrong_password',
@@ -77,7 +83,7 @@ describe('Login Use Case', () => {
         await expect(loginUseCase.execute(input)).rejects.toThrow('Invalid credentials.');
     });
 
-    it('should throw an error if the user does not exist', async () => {
+    it('Login3 - should throw an error if the user does not exist', async () => {
         const input = {
             email: 'nonexistent@example.com',
             password: 'any_password',

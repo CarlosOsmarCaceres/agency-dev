@@ -1,6 +1,6 @@
-import { IUserRepository } from '../../repositories/user.repository';
-import { IEncrypter } from '../../services/encrypter.service';
-import { IAuthenticator } from '../../services/authenticator.service';
+import { IUserRepository } from '../services/user-service.js';
+import { IEncrypter } from '../services/encrypter.js';
+import { IAuthenticator } from '../services/authenticator.js';
 
 // DTO de entrada
 export interface LoginInput {
