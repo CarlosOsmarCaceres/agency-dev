@@ -1,7 +1,7 @@
 import { Entity } from "../../utils/type/entity";
 import { Client } from "../users/client";
 import { MaintenancePlan } from "../catalog/maintenance-plan";
-import { Service } from "../catalog/services";
+import { Service } from "../catalog/service";
 
 export const CartStatuses = {
     ACTIVE: "Activo",           // El cliente está añadiendo cosas.
