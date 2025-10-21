@@ -1,2 +1,3 @@
 export * from "./services.js";
-export * from "./plans.js";
+export * from "./maintenance-plan.js";
+export * from "./category.js";
