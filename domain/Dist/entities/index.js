@@ -1,4 +1,10 @@
 "use strict";
+/* export * from "./catalog/services.js";
+export * from "./catalog/maintenance-plan.js";
+export * from "./catalog/category.js";
+export * from "./business/proyect.js";
+export * from "./users/client.js";
+export * from "./users/user.js"; */
 var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
     if (k2 === undefined) k2 = k;
     var desc = Object.getOwnPropertyDescriptor(m, k);
@@ -14,7 +20,8 @@ var __exportStar = (this && this.__exportStar) || function(m, exports) {
     for (var p in m) if (p !== "default" && !Object.prototype.hasOwnProperty.call(exports, p)) __createBinding(exports, m, p);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-__exportStar(require("./cart.js"), exports);
-__exportStar(require("./provision.js"), exports);
-__exportStar(require("./user.js"), exports);
+__exportStar(require("./finance/index.js"), exports);
+__exportStar(require("./business/index.js"), exports);
+__exportStar(require("./users/index.js"), exports);
+__exportStar(require("./catalog/index.js"), exports);
 //# sourceMappingURL=index.js.map
