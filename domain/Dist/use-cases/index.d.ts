@@ -1,2 +1,2 @@
-export * from './get-provision.js';
+export {};
 //# sourceMappingURL=index.d.ts.map
