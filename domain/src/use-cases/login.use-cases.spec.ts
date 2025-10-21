@@ -1,44 +1,14 @@
 import { describe, it, expect, beforeEach } from 'vitest';
 import { LoginUseCase } from './login.use-cases.js';
-import { IUserRepository } from '../repositories/user-repository.js';
-import { IEncrypter } from '../provider/encrypter.provider.js';
-import { IAuthenticator } from '../provider/authenticator.provider.js';
-import { User, UserRole, UserRoles } from '../entities/users/user.js';
+import { User, UserRoles } from '../../src/entities/users/user.js';
+
 // --- Mocks ---
-// Usaremos los mismos mocks de antes, pero con pequeñas adaptaciones.
-class InMemoryUserRepository implements IUserRepository {
-    findById(id: string): Promise<User | null> {
-        throw new Error('Method not implemented.');
-    }
-    update(user: User): Promise<User> {
-        throw new Error('Method not implemented.');
-    }
-    public users: User[] = [];
-    async findByEmail(email: string): Promise<User | null> {
-        return this.users.find(user => user.email === email) || null;
-    }
-    async save(user: User): Promise<User> {
-        this.users.push(user);
-        return user;
-    }
-}
+// 👇 PASO 1: IMPORTAMOS LOS MOCKS DESDE SUS ARCHIVOS CENTRALES 👇
+import { InMemoryUserRepository } from '../repositories/__mocks__/in-memory-user.repository.js';
+import { MockEncrypter } from '../provider/__mocks__/mock-encrypter.provider.js';
+import { MockAuthenticator } from '../provider/__mocks__/mock-authenticator.provider.js';
 
-class MockEncrypter implements IEncrypter {
-    async hash(value: string): Promise<string> {
-        return `hashed_${value}`;
-    }
-    async compare(value: string, hash: string): Promise<boolean> {
-        // Simulamos que la contraseña es correcta si coincide con el hash esperado
-        return `hashed_${value}` === hash;
-    }
-}
-
-class MockAuthenticator implements IAuthenticator {
-    async generateToken(payload: { id: string; role: UserRole; }): Promise<string> {
-        return `token_for_${payload.id}`;
-    }
-}
-
+// ❌ PASO 2: YA NO HAY NINGUNA "class" DE MOCK DEFINIDA AQUÍ ❌
 
 describe('Login Use Case', () => {
     let userRepository: InMemoryUserRepository;
@@ -46,13 +16,13 @@ describe('Login Use Case', () => {
     let authenticator: MockAuthenticator;
     let loginUseCase: LoginUseCase;
 
+    // El `beforeEach` y el resto de los tests quedan exactamente igual.
     beforeEach(async () => {
         userRepository = new InMemoryUserRepository();
         encrypter = new MockEncrypter();
         authenticator = new MockAuthenticator();
         loginUseCase = new LoginUseCase(userRepository, encrypter, authenticator);
 
-        // Creamos un usuario de prueba antes de cada test
         await userRepository.save({
             id: '123',
             name: 'Test User',
@@ -68,9 +38,7 @@ describe('Login Use Case', () => {
             email: 'test@example.com',
             password: 'correct_password',
         };
-
         const token = await loginUseCase.execute(input);
-        
         expect(token).toBe('token_for_123');
     });
 
@@ -79,7 +47,6 @@ describe('Login Use Case', () => {
             email: 'test@example.com',
             password: 'wrong_password',
         };
-
         await expect(loginUseCase.execute(input)).rejects.toThrow('Invalid credentials.');
     });
 
@@ -88,7 +55,6 @@ describe('Login Use Case', () => {
             email: 'nonexistent@example.com',
             password: 'any_password',
         };
-
         await expect(loginUseCase.execute(input)).rejects.toThrow('Invalid credentials.');
     });
 });
