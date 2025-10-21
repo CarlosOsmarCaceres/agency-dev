@@ -1,5 +1,5 @@
-import { Entity } from "../../utils/type/entity";
-import { Invoice } from "./invoice";
+import { Entity } from "../../utils/type/entity.js";
+import { Invoice } from "./invoice.js";
 
 export const PaymentMethods = {
     CREDIT_CARD: "Tarjeta de Crédito",

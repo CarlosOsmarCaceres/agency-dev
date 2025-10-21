@@ -1,5 +1,5 @@
-import { Entity } from "../../utils/type/entity";
-import { User } from "./user";
+import { Entity } from "../../utils/type/entity.js";
+import { User } from "./user.js";
 
 // La entidad Client guarda datos específicos del cliente.
 export interface Client extends Entity {

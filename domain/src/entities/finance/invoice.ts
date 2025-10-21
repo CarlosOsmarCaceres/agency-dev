@@ -1,6 +1,6 @@
-import { Entity } from "../../utils/type/entity";
-import { Client } from "../users/client";
-import { Project } from "../business/project";
+import { Entity } from "../../utils/type/entity.js";
+import { Client } from "../users/client.js";
+import { Project } from "../business/project.js";
 
 export const InvoiceStatuses = {
     DRAFT: "Borrador",      // Creada pero no enviada
