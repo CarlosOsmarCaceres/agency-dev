@@ -1,6 +1,6 @@
 import { v4 as uuidv4 } from 'uuid';
 import { Category } from '../../entities/catalog/category.js';
-import { UserRoles } from '../../entities/users/user.js';
+import { UserRoles, UserRole } from '../../entities/users/user.js';
 import { ICategoryRepository } from '../../repositories/category.repository.js';
 import { IUserRepository } from '../../repositories/user-repository.js';
 
@@ -25,12 +25,16 @@ export class CreateCategoryUseCase {
             throw new Error('User not found.');
         }
 
-        // --- LÓGICA DE AUTORIZACIÓN ---
-        if (actingUser.role !== UserRoles.ADMIN) {
+        // --- LÓGICA DE AUTORIZACIÓN ACTUALIZADA ---
+        // Creamos una lista de roles permitidos
+        const allowedRoles: UserRole[] = [UserRoles.ADMIN, UserRoles.SALESPERSON];
+
+        // Verificamos si el rol del usuario está en la lista
+        if (!allowedRoles.includes(actingUser.role)) {
             throw new Error('Authorization failed.');
         }
 
-        // --- LÓGICA DE NEGOCIO ---
+        // El resto de la lógica no cambia...
         const existingCategory = await this.categoryRepository.findByName(name);
         if (existingCategory) {
             throw new Error('Category with this name already exists.');
