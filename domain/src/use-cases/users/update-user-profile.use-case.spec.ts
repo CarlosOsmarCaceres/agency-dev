@@ -5,33 +5,10 @@ import { Client } from '../../entities/users/client.js';
 import { IUserRepository } from '../../repositories/user-repository.js';
 import { IClientRepository } from '../../repositories/client.repository.js';
 
-// --- Mocks de Repositorios ---
-class InMemoryUserRepository implements IUserRepository {
-    public users: User[] = [];
-    async findById(id: string): Promise<User | null> {
-        return this.users.find(user => user.id === id) || null;
-    }
-    async update(user: User): Promise<User> {
-        const index = this.users.findIndex(u => u.id === user.id);
-        this.users[index] = user;
-        return user;
-    }
-    // Métodos no usados en este test, pero necesarios por la interfaz
-    async findByEmail(email: string): Promise<User | null> { return null; }
-    async save(user: User): Promise<User> { return user; }
-}
+// --- Mocks ---
+import { InMemoryUserRepository } from '../../repositories/__mocks__/in-memory-user.repository.js';
+import { InMemoryClientRepository } from '../../repositories/__mocks__/in-memory-client.repository.js';
 
-class InMemoryClientRepository implements IClientRepository {
-    public clients: Client[] = [];
-    async findByUserId(userId: string): Promise<Client | null> {
-        return this.clients.find(c => c.userId === userId) || null;
-    }
-    async update(client: Client): Promise<Client> {
-        const index = this.clients.findIndex(c => c.id === client.id);
-        this.clients[index] = client;
-        return client;
-    }
-}
 
 describe('Update User Profile Use Case', () => {
     let userRepository: InMemoryUserRepository;

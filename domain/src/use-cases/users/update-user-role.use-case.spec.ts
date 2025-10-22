@@ -2,9 +2,10 @@ import { describe, it, expect, beforeEach } from 'vitest';
 import { UpdateUserRoleUseCase } from './update-user-role.use-case.js';
 import { User, UserRoles } from '../../entities/users/user.js';
 import { IUserRepository } from '../../repositories/user-repository.js';
+import { InMemoryUserRepository } from '../../repositories/__mocks__/in-memory-user.repository.js';
 
 // --- Mock del Repositorio ---
-class InMemoryUserRepository implements IUserRepository {
+/* class InMemoryUserRepository implements IUserRepository {
     public users: User[] = [];
     async findById(id: string): Promise<User | null> {
         return this.users.find(user => user.id === id) || null;
@@ -18,7 +19,7 @@ class InMemoryUserRepository implements IUserRepository {
     async findAll(): Promise<User[]> { return this.users; }
     async findByEmail(email: string): Promise<User | null> { return null; }
     async save(user: User): Promise<User> { this.users.push(user); return user; }
-}
+} */
 
 describe('Update User Role Use Case', () => {
     let userRepository: InMemoryUserRepository;
