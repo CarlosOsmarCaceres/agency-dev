@@ -1,4 +1,4 @@
-import { Category } from "../entities/catalog/category.entity.js";
+import { Category } from "../entities/catalog/category.js";
 
 export interface ICategoryRepository {
     findByName(name: string): Promise<Category | null>;

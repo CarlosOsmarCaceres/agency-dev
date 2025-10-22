@@ -1,8 +1,8 @@
 import { v4 as uuidv4 } from 'uuid';
-import { Category } from '../../entities/catalog/category.entity.js';
-import { UserRoles } from '../../entities/users/user.entity.js';
+import { Category } from '../../entities/catalog/category.js';
+import { UserRoles } from '../../entities/users/user.js';
 import { ICategoryRepository } from '../../repositories/category.repository.js';
-import { IUserRepository } from '../../repositories/user.repository.js';
+import { IUserRepository } from '../../repositories/user-repository.js';
 
 // DTO de entrada
 export interface CreateCategoryInput {

@@ -1,4 +1,5 @@
-import { Category } from "../../entities/catalog/category.entity.js";
+// Contratos   
+import { Category } from "../../entities/catalog/category.js";
 import { ICategoryRepository } from "../category.repository.js";
 
 export class InMemoryCategoryRepository implements ICategoryRepository {

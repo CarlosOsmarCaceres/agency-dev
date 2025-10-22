@@ -1,3 +1,4 @@
+// Contratos
 import { User } from "../../entities/users/user.js";
 import { IUserRepository } from "../user-repository.js";
 

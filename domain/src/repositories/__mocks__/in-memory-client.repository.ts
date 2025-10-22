@@ -1,3 +1,4 @@
+// Contratos
 import { Client } from "../../entities/users/client.js";
 import { IClientRepository } from "../client.repository.js";
 
