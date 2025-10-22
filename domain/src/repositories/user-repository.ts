@@ -6,4 +6,5 @@ export interface IUserRepository {
     findByEmail(email: string): Promise<User | null>;
     save(user: User): Promise<User>;
     update(user: User): Promise<User>; // Lo agregamos pensando en el futuro caso de uso de "actualizar perfil"
+    delete(id: string): Promise<void>;
 }

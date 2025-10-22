@@ -3,20 +3,10 @@ import { ListUsersUseCase } from './list-users.use-case.js';
 import { User, UserRoles } from '../../entities/users/user.js';
 import { IUserRepository } from '../../repositories/user-repository.js';
 
+import { InMemoryUserRepository } from '../../repositories/__mocks__/in-memory-user.repository.js';
+
 // --- Mock del Repositorio ---
 // Extendemos el mock con el nuevo método 'findAll'
-class InMemoryUserRepository implements IUserRepository {
-    public users: User[] = [];
-    async findAll(): Promise<User[]> {
-        return this.users;
-    }
-    async findById(id: string): Promise<User | null> {
-        return this.users.find(user => user.id === id) || null;
-    }
-    async update(user: User): Promise<User> { /* ... */ return user; }
-    async findByEmail(email: string): Promise<User | null> { /* ... */ return null; }
-    async save(user: User): Promise<User> { this.users.push(user); return user; }
-}
 
 describe('List Users Use Case', () => {
     let userRepository: InMemoryUserRepository;

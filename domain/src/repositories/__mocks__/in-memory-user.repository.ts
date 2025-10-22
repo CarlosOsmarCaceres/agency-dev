@@ -1,3 +1,4 @@
+// Contratos
 import { User } from "../../entities/users/user.js";
 import { IUserRepository } from "../user-repository.js";
 
@@ -28,4 +29,13 @@ export class InMemoryUserRepository implements IUserRepository {
         }
         return user;
     }
+
+    async delete(id: string): Promise<void> { // <-- Añadimos este método al mock
+        const index = this.users.findIndex(u => u.id === id);
+        if (index !== -1) {
+            this.users.splice(index, 1);
+        }
+    }
+
+    
 }

@@ -2,21 +2,8 @@ import { describe, it, expect, beforeEach } from 'vitest';
 import { GetUserByIdUseCase } from './get-user-by-id.use-case.js';
 import { User, UserRoles } from '../../entities/users/user.js';
 import { IUserRepository } from '../../repositories/user-repository.js';
+import { InMemoryUserRepository } from '../../repositories/__mocks__/in-memory-user.repository.js';
 
-
-
-// --- Mock del Repositorio (reutilizamos el que ya tenemos) ---
-class InMemoryUserRepository implements IUserRepository {
-    public users: User[] = [];
-    async findById(id: string): Promise<User | null> {
-        return this.users.find(user => user.id === id) || null;
-    }
-    // Métodos no usados en este test
-    async findAll(): Promise<User[]> { return this.users; }
-    async findByEmail(email: string): Promise<User | null> { return null; }
-    async save(user: User): Promise<User> { this.users.push(user); return user; }
-    async update(user: User): Promise<User> { return user; }
-}
 
 describe('Get User By Id Use Case', () => {
     let userRepository: InMemoryUserRepository;

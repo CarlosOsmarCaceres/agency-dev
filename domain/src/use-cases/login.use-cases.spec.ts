@@ -3,12 +3,9 @@ import { LoginUseCase } from './login.use-cases.js';
 import { User, UserRoles } from '../../src/entities/users/user.js';
 
 // --- Mocks ---
-// 👇 PASO 1: IMPORTAMOS LOS MOCKS DESDE SUS ARCHIVOS CENTRALES 👇
 import { InMemoryUserRepository } from '../repositories/__mocks__/in-memory-user.repository.js';
 import { MockEncrypter } from '../provider/__mocks__/mock-encrypter.provider.js';
 import { MockAuthenticator } from '../provider/__mocks__/mock-authenticator.provider.js';
-
-// ❌ PASO 2: YA NO HAY NINGUNA "class" DE MOCK DEFINIDA AQUÍ ❌
 
 describe('Login Use Case', () => {
     let userRepository: InMemoryUserRepository;
