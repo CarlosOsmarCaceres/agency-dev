@@ -5,6 +5,10 @@ import { ICategoryRepository } from "../category.repository.js";
 export class InMemoryCategoryRepository implements ICategoryRepository {
     public categories: Category[] = [];
 
+    async findAll(): Promise<Category[]> {
+        return this.categories;
+    }
+
     async findById(id: string): Promise<Category | null> {
         return this.categories.find(c => c.id === id) || null;
     }
