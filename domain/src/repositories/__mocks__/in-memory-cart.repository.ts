@@ -4,6 +4,10 @@ import { ICartRepository } from "../cart.repository.js";
 export class InMemoryCartRepository implements ICartRepository {
     public carts: Cart[] = [];
 
+    async findById(id: string): Promise<Cart | null> {
+        return this.carts.find(cart => cart.id === id) || null;
+    }
+
     async findActiveByClientId(clientId: string): Promise<Cart | null> {
         return this.carts.find(cart => cart.clientId === clientId && cart.status === 'Activo') || null;
     }
