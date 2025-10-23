@@ -1,9 +1,18 @@
 // Contratos
 import { User } from "../../entities/users/user.js";
 import { IUserRepository } from "../user-repository.js";
+import { InMemoryClientRepository } from "./in-memory-client.repository.js";
 
 export class InMemoryUserRepository implements IUserRepository {
     public users: User[] = [];
+
+    async findByClientId(clientId: string): Promise<User | null> {
+        // En nuestro mock, asumimos que el userId es igual al clientId para simplificar
+        // En una implementación real, buscarías en la tabla de Clientes
+        const client = (new InMemoryClientRepository()).clients.find(c => c.id === clientId);
+        if (!client) return null;
+        return this.users.find(u => u.id === client.userId) || null;
+    }
 
     async findAll(): Promise<User[]> {
         return this.users;
