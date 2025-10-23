@@ -1,8 +1,10 @@
-import { UserRoles } from '../../entities/users/user.js';
+import { UserRoles, UserRole } from '../../entities/users/user.js';
 import { IProjectRepository } from '../../repositories/project.repository.js';
 import { IUserRepository } from '../../repositories/user-repository.js';
 import { IClientRepository } from '../../repositories/client.repository.js';
 import { Project } from '../../entities/business/project.js';
+/* import { a } from 'vitest/dist/chunks/suite.d.FvehnV49.js'; */
+/* import { afterAll } from 'vitest'; */
 
 export interface ListProjectsByClientInput {
     actingUserId: string;
@@ -14,7 +16,6 @@ export class ListProjectsByClientUseCase {
         private userRepository: IUserRepository,
         private clientRepository: IClientRepository,
         private projectRepository: IProjectRepository,
-        
     ) {}
 
     async execute(input: ListProjectsByClientInput): Promise<Project[]> {
@@ -22,16 +23,25 @@ export class ListProjectsByClientUseCase {
 
         const actingUser = await this.userRepository.findById(actingUserId);
         if (!actingUser) throw new Error('User not found.');
+        
+        // 1. Definimos los roles con privilegios
+        /* const privilegedRoles = [UserRoles.ADMIN, UserRoles.SALESPERSON]; */
+        const allowedRoles: UserRole[] = [UserRoles.ADMIN, UserRoles.SALESPERSON];
+        const isPrivilegedUser = allowedRoles.includes(actingUser.role);
+        
+        // 2. Verificamos si es el dueño (solo si no es un rol con privilegios)
+        let isOwner = false;
+        if (!isPrivilegedUser) {
+            const clientProfile = await this.clientRepository.findByUserId(actingUser.id);
+            isOwner = clientProfile?.id === clientId;
+        }
 
-        // --- LÓGICA DE AUTORIZACIÓN ---
-        const isAdmin = actingUser.role === UserRoles.ADMIN;
-        // Buscamos si el usuario que actúa es dueño del perfil de cliente que se quiere consultar
-        const isOwner = actingUser.id === (await this.userRepository.findByClientId(clientId))?.id;
-
-        if (!isAdmin && !isOwner) {
+        // 3. Aplicamos la regla final
+        if (!isPrivilegedUser && !isOwner) {
             throw new Error('Authorization failed.');
         }
 
+        // Si la autorización pasa, buscamos y devolvemos los proyectos
         const projects = await this.projectRepository.findByClientId(clientId);
         return projects;
     }
