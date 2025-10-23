@@ -8,6 +8,11 @@ export class InMemoryClientRepository implements IClientRepository {
     async findByUserId(userId: string): Promise<Client | null> {
         return this.clients.find(c => c.userId === userId) || null;
     }
+
+    async save(client: Client): Promise<Client> {
+            this.clients.push(client);
+            return client;
+        }
     
     async update(client: Client): Promise<Client> {
         const index = this.clients.findIndex(c => c.id === client.id);
