@@ -2,7 +2,11 @@ import { Project } from "../../entities/business/project.js";
 import { IProjectRepository } from "../project.repository.js";
 export class InMemoryProjectRepository implements IProjectRepository {
     public projects: Project[] = [];
-    
+
+    async findById(id: string): Promise<Project | null> {
+        return this.projects.find(p => p.id === id) || null;
+    }
+
     async findByClientId(clientId: string): Promise<Project[]> {
         return this.projects.filter(project => project.clientId === clientId);
     }
