@@ -1,10 +1,15 @@
 {
-  "extends": "../../tsconfig.json", // Inherit from the root tsconfig.json
-  "compilerOptions": { // Override specific compiler options
-    "declaration": true, // 
-    "outDir": "Dist", // Specify the output directory for compiled files
-    "rootDir": "src"
+  "compilerOptions": {
+    "target": "ES2022",
+    "module": "NodeNext",
+    "moduleResolution": "NodeNext",
+    "outDir": "./dist",
+    "rootDir": "./src",
+    "strict": true,
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true
   },
-  "include": ["src"], // Include all TypeScript files in the src directory
-
+  "include": ["src/**/*"],
+  "exclude": ["node_modules"]
 }
