@@ -18,5 +18,5 @@ export interface Payment extends Entity {
     method: PaymentMethod;
     
     // ID de la transacción del proveedor de pagos (ej. Mercado Pago)
-    transactionId?: string; 
+    transactionId?: string | undefined; 
 }

@@ -2,7 +2,8 @@
   "extends": "../tsconfig.json", // Inherit from the root tsconfig.json
   "compilerOptions": { // Override specific compiler options
     "declaration": true, // 
-    "outDir": "Dist" // Specify the output directory for compiled files
+    "outDir": "./dist",    // 1. La carpeta donde irá todo.
+    "rootDir": "./src"     // 2. La carpeta que será la "raíz" del código.
   },
   "include": ["src"], // Include all TypeScript files in the src directory
 

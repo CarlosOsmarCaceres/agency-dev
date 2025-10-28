@@ -1,0 +1,1 @@
+{"version":3,"file":"mock-authenticator.provider.js","sourceRoot":"","sources":["../../../src/provider/__mocks__/mock-authenticator.provider.ts"],"names":[],"mappings":"AAGA,MAAM,OAAO,iBAAiB;IAC1B,KAAK,CAAC,aAAa,CAAC,OAAsB;QACtC,OAAO,aAAa,OAAO,CAAC,EAAE,EAAE,CAAC;IACrC,CAAC;CACJ"}

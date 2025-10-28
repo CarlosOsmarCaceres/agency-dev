@@ -1,0 +1,1 @@
+{"version":3,"file":"list-categories.use-case.js","sourceRoot":"","sources":["../../../src/use-cases/catalog/list-categories.use-case.ts"],"names":[],"mappings":"AAGA,MAAM,OAAO,qBAAqB;IACV;IAApB,YAAoB,kBAAuC;QAAvC,uBAAkB,GAAlB,kBAAkB,CAAqB;IAAG,CAAC;IAE/D,KAAK,CAAC,OAAO;QACT,MAAM,UAAU,GAAG,MAAM,IAAI,CAAC,kBAAkB,CAAC,OAAO,EAAE,CAAC;QAC3D,OAAO,UAAU,CAAC;IACtB,CAAC;CACJ"}
