@@ -56,6 +56,13 @@ function toDomainCart(prismaCart: PrismaCart): Cart {
 // --- Fin de Funciones de Traducción ---
 
 export class PrismaCartRepository implements ICartRepository {
+    
+    async findById(id: string): Promise<Cart | null> {
+        const cart = await prisma.cart.findUnique({
+            where: { id },
+        });
+        return cart ? toDomainCart(cart) : null;
+    }
 
     async findActiveByClientId(clientId: string): Promise<Cart | null> {
         const cart = await prisma.cart.findFirst({
