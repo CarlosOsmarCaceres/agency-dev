@@ -1,0 +1,168 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL") // Lee la URL desde tu .env
+}
+
+// --- Definición de tus modelos ---
+
+// Usamos PascalCase para los nombres de modelos (User, Client)
+// Usamos camelCase para los nombres de campos (passwordHash, createdAt)
+
+model User {
+  id           String    @id @default(uuid()) // UUID generado automáticamente
+  name         String
+  email        String    @unique // El email debe ser único
+  passwordHash String
+  role         UserRole // Usaremos un Enum para los roles
+  createdAt    DateTime  @default(now()) // Fecha de creación automática
+  client       Client?   // Relación uno a uno opcional con Client
+  assignedProjects Project[] @relation("AssignedTo") // Proyectos asignados a este usuario (Admin/Sales)
+}
+
+// Enum para los roles (similar a tus UserRoles)
+enum UserRole {
+  ADMIN
+  SALESPERSON
+  CLIENT
+}
+
+model Client {
+  id           String    @id @default(uuid())
+  companyName  String?   // Campo opcional
+  contactPhone String
+  userId       String    @unique // Clave foránea a User (relación uno a uno)
+  user         User      @relation(fields: [userId], references: [id], onDelete: Cascade) // Define la relación y borrado en cascada
+  projects     Project[] // Proyectos de este cliente
+  invoices     Invoice[] // Facturas de este cliente
+  carts        Cart[]    // Carritos de este cliente (aunque normalmente será uno)
+}
+
+model Category {
+  id          String    @id @default(uuid())
+  name        String    @unique // Nombre de categoría único
+  description String
+  services    Service[] // Servicios en esta categoría
+}
+
+model Service {
+  id            String    @id @default(uuid())
+  name          String
+  description   String
+  price         Float     // Usamos Float para precios
+  categoryId    String    // Clave foránea a Category
+  category      Category  @relation(fields: [categoryId], references: [id])
+  projects      Project[] // Proyectos basados en este servicio
+  carts         Cart[]    // Carritos que contienen este servicio
+}
+
+model MaintenancePlan {
+  id           String               @id @default(uuid())
+  level        MaintenancePlanLevel // Usaremos un Enum para los niveles
+  description  String
+  monthlyPrice Float
+  features     String[]             // Array de strings para las características
+  projects     Project[]            // Proyectos con este plan
+  carts        Cart[]               // Carritos con este plan
+}
+
+// Enum para los niveles del plan
+enum MaintenancePlanLevel {
+  BASIC
+  STANDARD
+  PREMIUM
+}
+
+model Project {
+  id                      String              @id @default(uuid())
+  name                    String
+  status                  ProjectStatus       // Usaremos un Enum para los estados
+  finalPrice              Float
+  startDate               DateTime
+  estimatedCompletionDate DateTime
+  clientId                String              // Clave foránea a Client
+  client                  Client              @relation(fields: [clientId], references: [id])
+  serviceId               String              // Clave foránea a Service
+  service                 Service             @relation(fields: [serviceId], references: [id])
+  maintenancePlanId       String?             // Clave foránea opcional a MaintenancePlan
+  maintenancePlan         MaintenancePlan?    @relation(fields: [maintenancePlanId], references: [id])
+  assignedToId            String?             // Clave foránea opcional a User (para Admin/Sales)
+  assignedTo              User?               @relation("AssignedTo", fields: [assignedToId], references: [id])
+  invoices                Invoice[]           // Facturas de este proyecto
+}
+
+// Enum para los estados del proyecto
+enum ProjectStatus {
+  PENDING
+  IN_PROGRESS
+  COMPLETED
+  CANCELLED
+}
+
+model Cart {
+  id                String            @id @default(uuid())
+  status            CartStatus        // Usaremos un Enum para los estados
+  createdAt         DateTime          @default(now())
+  updatedAt         DateTime          @updatedAt // Se actualiza automáticamente
+  clientId          String            // Clave foránea a Client
+  client            Client            @relation(fields: [clientId], references: [id])
+  serviceId         String?           // Clave foránea opcional a Service
+  service           Service?          @relation(fields: [serviceId], references: [id])
+  maintenancePlanId String?           // Clave foránea opcional a MaintenancePlan
+  maintenancePlan   MaintenancePlan?  @relation(fields: [maintenancePlanId], references: [id])
+
+  @@unique([clientId, status]) // Evita múltiples carritos activos por cliente (si status fuera UNIQUE)
+                               // O podríamos simplemente buscar el carrito activo en la lógica
+}
+
+// Enum para los estados del carrito
+enum CartStatus {
+  ACTIVE
+  CONVERTED
+  ABANDONED
+}
+
+model Invoice {
+  id        String        @id @default(uuid())
+  amount    Float
+  status    InvoiceStatus // Usaremos un Enum para los estados
+  issueDate DateTime
+  dueDate   DateTime
+  clientId  String        // Clave foránea a Client
+  client    Client        @relation(fields: [clientId], references: [id])
+  projectId String        // Clave foránea a Project
+  project   Project       @relation(fields: [projectId], references: [id])
+  payments  Payment[]     // Pagos asociados a esta factura
+}
+
+// Enum para los estados de la factura
+enum InvoiceStatus {
+  DRAFT
+  PENDING
+  PAID
+  OVERDUE
+  CANCELLED
+}
+
+model Payment {
+  id            String         @id @default(uuid())
+  amount        Float
+  paymentDate   DateTime       @default(now())
+  method        PaymentMethod  // Usaremos un Enum para los métodos
+  transactionId String?        // ID de transacción externo (opcional)
+  invoiceId     String         // Clave foránea a Invoice
+  invoice       Invoice        @relation(fields: [invoiceId], references: [id])
+}
+
+// Enum para los métodos de pago
+enum PaymentMethod {
+  CREDIT_CARD
+  BANK_TRANSFER
+  MERCADO_PAGO
+}
