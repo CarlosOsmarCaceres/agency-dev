@@ -23,7 +23,7 @@ export interface Project extends Entity {
     serviceId: Service['id']; // El servicio del catálogo en el que se basa.
     
     // El plan de mantenimiento es opcional en la contratación.
-    maintenancePlanId: MaintenancePlan['id'] | null;
+    maintenancePlanId?: MaintenancePlan['id'] | null;
     
     // Quién del equipo está asignado. Puede estar vacío al principio.
     assignedToId?: User['id']; // El ID de un 'Vendedor' o 'Admin'.
