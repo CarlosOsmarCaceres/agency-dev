@@ -57,7 +57,7 @@ function toDomainProject(prismaProject: PrismaProject): Project {
         clientId: prismaProject.clientId,
         serviceId: prismaProject.serviceId,
         maintenancePlanId: prismaProject.maintenancePlanId,
-        assignedToId: prismaProject.assignedToId,
+        assignedToId: prismaProject.assignedToId || undefined,
     };
 }
 // --- Fin de Funciones de Traducción ---
