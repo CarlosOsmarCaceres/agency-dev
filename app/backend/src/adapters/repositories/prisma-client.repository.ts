@@ -1,7 +1,7 @@
 import { PrismaClient, Client as PrismaClientData } from '@prisma/client';
 // Usamos alias o rutas relativas
 import { Client } from '../../../../../domain/dist/entities/users/client.js';
-import { IClientRepository } from '@agency/domain/repositories/client.repository.js';
+import { IClientRepository } from '../../../../../domain/dist/repositories/client.repository.js';
 
 const prisma = new PrismaClient();
 
