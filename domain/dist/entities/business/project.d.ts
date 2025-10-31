@@ -15,7 +15,7 @@ export interface Project extends Entity {
     status: ProjectStatus;
     clientId: Client['id'];
     serviceId: Service['id'];
-    maintenancePlanId: MaintenancePlan['id'] | null;
+    maintenancePlanId?: MaintenancePlan['id'] | null;
     assignedToId?: User['id'];
     finalPrice: number;
     startDate: Date;
