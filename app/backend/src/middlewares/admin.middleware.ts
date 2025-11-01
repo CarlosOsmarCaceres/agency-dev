@@ -12,7 +12,7 @@ export const adminMiddleware = (req: Request, res: Response, next: NextFunction)
     // 2. Verificamos el rol del usuario
     if (req.user.role !== UserRoles.ADMIN) {
         // 403 Forbidden: Estás autenticado, pero no tienes permiso para este recurso
-        return res.status(403).json({ error: 'Acceso denegado. Se requiere rol de Administrador.' });
+        return res.status(403).json({ error: 'Acceso denegado. Se requiere rol de Administrador .' });
     }
 
     // 3. Si es Admin, dejamos pasar
