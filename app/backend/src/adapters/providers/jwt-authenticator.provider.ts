@@ -1,4 +1,5 @@
-import * as jwt from 'jsonwebtoken';
+/* import * as jwt from 'jsonwebtoken'; */
+import jwt from 'jsonwebtoken';
 // 👇 CORREGÍ LA RUTA: Usa el alias que configuramos (o la ruta a 'domain/src' si no usas alias)
 import { IAuthenticator, ITokenPayload } from '../../../../../domain/dist/provider/authenticator.provider.js';
 

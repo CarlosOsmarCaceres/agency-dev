@@ -1,4 +1,5 @@
-import * as jwt from 'jsonwebtoken';
+/* import * as jwt from 'jsonwebtoken'; */
+import jwt from 'jsonwebtoken';
 // --- 👇 LAS CONSTANTES VAN AQUÍ ARRIBA, DENTRO DEL ARCHIVO .TS 👇 ---
 // Lee la clave secreta desde el archivo .env
 // Si no la encuentra, usa una clave de desarrollo (NO SEGURA para producción)
