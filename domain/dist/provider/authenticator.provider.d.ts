@@ -5,6 +5,6 @@ export interface ITokenPayload {
 }
 export interface IAuthenticator {
     generateToken(payload: ITokenPayload): Promise<string>;
-    verifyToken?(token: string): Promise<ITokenPayload | null>;
+    verifyToken<T>(token: string): Promise<ITokenPayload | null>;
 }
 //# sourceMappingURL=authenticator.provider.d.ts.map

@@ -74,7 +74,7 @@ const invoiceRepository: IInvoiceRepository = new PrismaInvoiceRepository();
 const paymentRepository: IPaymentRepository = new PrismaPaymentRepository();
 
 const encrypter: IEncrypter = new BcryptEncrypterAdapter();
-const authenticator: IAuthenticator = new JwtAuthenticatorAdapter();
+export const authenticator: IAuthenticator = new JwtAuthenticatorAdapter();
 
 
 // --- 5. INSTANCIAR Y EXPORTAR CASOS DE USO ---

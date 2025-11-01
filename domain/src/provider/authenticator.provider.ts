@@ -8,5 +8,5 @@ export interface ITokenPayload {
 
 export interface IAuthenticator {
     generateToken(payload: ITokenPayload): Promise<string>;
-    verifyToken?(token: string): Promise<ITokenPayload | null>; // El '?' lo hace opcional por ahora
+    verifyToken<T>(token: string): Promise<ITokenPayload | null>; // El '?' lo hace opcional por ahora
 }
