@@ -29,7 +29,7 @@ import { JwtAuthenticatorAdapter } from './adapters/providers/jwt-authenticator.
 // --- 3. IMPORTAR TODOS LOS CASOS DE USO DEL DOMINIO ---
 
 // Módulo de Usuarios
-import { RegisterUserUseCase } from '../../../domain/src/use-cases/users/register-user.use-case';
+import { RegisterUserUseCase } from '../../../domain/dist/use-cases/users/register-user.use-case.js';
 import { LoginUseCase } from '../../../domain/dist/use-cases/login.use-cases.js';
 import { GetUserProfileUseCase } from '../../../domain/dist/use-cases/users/get-user-profile.use-case.js';
 import { UpdateUserProfileUseCase } from '../../../domain/dist/use-cases/users/update-user-profile.use-case.js';
