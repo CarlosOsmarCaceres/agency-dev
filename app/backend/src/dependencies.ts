@@ -1,7 +1,7 @@
 import { PrismaClient } from '@prisma/client';
 
 // --- 1. IMPORTAR INTERFACES (CONTRATOS) DEL DOMINIO ---
-import { IUserRepository } from '../../../domain/dist/repositories/user-repository';
+import { IUserRepository } from '../../../domain/dist/repositories/user-repository.js';
 import { IClientRepository } from '../../../domain/dist/repositories/client.repository.js';
 import { ICategoryRepository } from '../../../domain/dist/repositories/category.repository.js';
 import { IServiceRepository } from '../../../domain/dist/repositories/service.repository.js';
@@ -10,7 +10,7 @@ import { ICartRepository } from '../../../domain/dist/repositories/cart.reposito
 import { IProjectRepository } from '../../../domain/dist/repositories/project.repository.js';
 import { IInvoiceRepository } from '../../../domain/dist/repositories/invoice.repository.js';
 import { IPaymentRepository } from '../../../domain/dist/repositories/payment.repository.js';
-import { IEncrypter } from '../../../domain/dist/provider/encrypter.provider';
+import { IEncrypter } from '../../../domain/dist/provider/encrypter.provider.js';
 import { IAuthenticator } from '../../../domain/dist/provider/authenticator.provider.js';
 
 // --- 2. IMPORTAR IMPLEMENTACIONES (ADAPTADORES) DEL BACKEND ---
