@@ -23,4 +23,6 @@ router.get('/categories', listCategoriesController);
 router.get('/services', listServicesController);
 
 router.post('/categories', authMiddleware, salesMiddleware, createCategoryController);  
+// --- Rutas Protegidas (Solo Admin) ---
+router.post('/services', authMiddleware, adminMiddleware, createServiceController);
 export default router;
