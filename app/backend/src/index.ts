@@ -6,6 +6,7 @@ import express, { Express, Request, Response } from 'express';
 import userRoutes from './routes/user.routes.js';
 import catalogRoutes from './routes/catalog.routes.js';
 import cartRoutes from './routes/cart.routes.js'; 
+import projectRoutes from './routes/project.routes.js';
 
 
 // Crear la aplicación Express
@@ -24,6 +25,9 @@ app.get('/', (req: Request, res: Response) => {
 app.use('/users', userRoutes);
 app.use('/catalog', catalogRoutes);
 app.use('/cart', cartRoutes);
+
+// 👇 2. Monta el router de proyectos
+app.use('/projects', projectRoutes);
 
 // Iniciar el servidor
 app.listen(port, () => {
