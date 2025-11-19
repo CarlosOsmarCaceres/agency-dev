@@ -5,6 +5,8 @@ import {  Cart  } from '../../../domain/Dist/index.js'; */
 import express, { Express, Request, Response } from 'express';
 import userRoutes from './routes/user.routes.js';
 import catalogRoutes from './routes/catalog.routes.js';
+import cartRoutes from './routes/cart.routes.js'; 
+
 
 // Crear la aplicación Express
 const app: Express = express();
@@ -21,6 +23,7 @@ app.get('/', (req: Request, res: Response) => {
 // 👇 2. Monta el router de usuarios en la ruta base '/users'
 app.use('/users', userRoutes);
 app.use('/catalog', catalogRoutes);
+app.use('/cart', cartRoutes);
 
 // Iniciar el servidor
 app.listen(port, () => {
