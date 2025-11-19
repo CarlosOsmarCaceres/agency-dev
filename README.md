@@ -16,6 +16,7 @@ backend: node dist/index.js # Para correr el script
                 use-cases --- index.ts
                 index.ts
  . tsc -p .                 # transpilar cada vez que hacemos un new file ts
+ npm run test Testeo
 
 # Carpeta entities
     Aqui va toda la logica de interfaces
