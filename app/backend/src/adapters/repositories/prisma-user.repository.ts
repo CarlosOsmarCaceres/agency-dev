@@ -1,7 +1,7 @@
 import { PrismaClient, User as PrismaUser, UserRole as PrismaUserRole } from '@prisma/client';
 // Asumiendo que ya configuraste el alias @agency/domain
 import { User, UserRole, UserRoles } from '../../../../../domain/dist/entities/users/user.js';
-import { IUserRepository } from '../../../../../domain/dist/repositories/user-repository.js';
+import { IUserRepository, SaveUserClientData } from '../../../../../domain/dist/repositories/user-repository.js';
 
 // Instancia de Prisma (mejor si es un Singleton, pero esto funciona)
 const prisma = new PrismaClient();
@@ -76,18 +76,28 @@ export class PrismaUserRepository implements IUserRepository {
         return user ? toDomainUser(user) : null;
     }
 
-    async save(user: User): Promise<User> {
+    async save(user: User, clientData: SaveUserClientData): Promise<User> {
         const newUser = await prisma.user.create({
             data: {
+                // Datos del User
                 id: user.id,
                 name: user.name,
                 email: user.email,
                 passwordHash: user.passwordHash,
-                role: toPrismaRole(user.role), // Traducimos el rol al guardarlo
+                role: toPrismaRole(user.role), 
                 createdAt: user.createdAt,
+                
+                // 🛑 LÓGICA DE CREACIÓN ANIDADA 🛑
+                client: {
+                    create: {
+                        contactPhone: clientData.contactPhone,
+                        companyName: clientData.companyName,
+                    }
+                }
+                // 🛑 FIN DE CREACIÓN ANIDADA 🛑
             },
         });
-        return toDomainUser(newUser); // Devolvemos el usuario traducido
+        return toDomainUser(newUser); // Devuelve el usuario traducido
     }
 
     async update(user: User): Promise<User> {

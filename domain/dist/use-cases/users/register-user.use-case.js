@@ -1,5 +1,4 @@
 import { v4 as uuidv4 } from 'uuid';
-// Asumiendo alias (ajusta la ruta si sigues con relativas)
 import { UserRoles } from '../../entities/users/user.js';
 export class RegisterUserUseCase {
     userRepository;
@@ -9,24 +8,31 @@ export class RegisterUserUseCase {
         this.encrypter = encrypter;
     }
     async execute(input) {
-        // 1. Validar que el email no esté en uso
-        const existingUser = await this.userRepository.findByEmail(input.email);
+        // 1. Desestructuramos para obtener los datos del cliente
+        const { name, email, password, contactPhone, companyName } = input;
+        const existingUser = await this.userRepository.findByEmail(email);
         if (existingUser) {
             throw new Error('Email already in use.');
         }
-        // 2. Encriptar la contraseña
         const hashedPassword = await this.encrypter.hash(input.password);
-        // 3. Crear la nueva entidad User
+        // 2. Creamos el objeto User
         const newUser = {
-            id: uuidv4(), // Generamos un ID único
-            name: input.name,
-            email: input.email,
+            id: uuidv4(),
+            name,
+            email,
             passwordHash: hashedPassword,
-            role: UserRoles.CLIENT, // Por defecto, un nuevo usuario es Cliente
+            role: UserRoles.CLIENT,
             createdAt: new Date(),
         };
-        // 4. Guardar el usuario a través del repositorio
-        await this.userRepository.save(newUser);
+        // 3. Preparamos los datos del cliente que el repositorio espera
+        const clientData = {
+            contactPhone,
+            companyName
+        };
+        // 4. Guardamos el usuario Y el cliente en una sola operación
+        // ESTO SOLUCIONA EL ERROR 'Expected 2 arguments, but got 1.'
+        // Y SOLUCIONA el error de negocio 'Client profile not found.'
+        await this.userRepository.save(newUser, clientData);
         return newUser;
     }
 }

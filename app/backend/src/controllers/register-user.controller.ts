@@ -7,14 +7,14 @@ import { RegisterUserInput } from '../../../../domain/dist/use-cases/users/regis
 export const registerUserController = async (req: Request, res: Response) => {
     try {
         // 1. Extraemos los datos del body de la petición
-        const { name, email, password } = req.body;
+        const { name, email, password, contactPhone, companyName } = req.body;
 
         // 2. Validamos la entrada (básico)
         if (!name || !email || !password) {
             return res.status(400).json({ error: 'Faltan datos (nombre, email, contraseña).' });
         }
 
-        const input: RegisterUserInput = { name, email, password };
+        const input: RegisterUserInput = { name, email, password, contactPhone, companyName };
 
         // 3. Llamamos al caso de uso (la lógica de negocio real)
         const newUser = await registerUserUseCase.execute(input);

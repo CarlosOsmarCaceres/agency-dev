@@ -5,6 +5,8 @@ export interface RegisterUserInput {
     name: string;
     email: string;
     password: string;
+    contactPhone: string;
+    companyName?: string;
 }
 export declare class RegisterUserUseCase {
     private userRepository;

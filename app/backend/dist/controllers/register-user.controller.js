@@ -3,12 +3,12 @@ import { registerUserUseCase } from '../dependencies.js';
 export const registerUserController = async (req, res) => {
     try {
         // 1. Extraemos los datos del body de la petición
-        const { name, email, password } = req.body;
+        const { name, email, password, contactPhone, companyName } = req.body;
         // 2. Validamos la entrada (básico)
         if (!name || !email || !password) {
             return res.status(400).json({ error: 'Faltan datos (nombre, email, contraseña).' });
         }
-        const input = { name, email, password };
+        const input = { name, email, password, contactPhone, companyName };
         // 3. Llamamos al caso de uso (la lógica de negocio real)
         const newUser = await registerUserUseCase.execute(input);
         // 4. Enviamos la respuesta exitosa

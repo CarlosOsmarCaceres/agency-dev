@@ -65,18 +65,27 @@ export class PrismaUserRepository {
         });
         return user ? toDomainUser(user) : null;
     }
-    async save(user) {
+    async save(user, clientData) {
         const newUser = await prisma.user.create({
             data: {
+                // Datos del User
                 id: user.id,
                 name: user.name,
                 email: user.email,
                 passwordHash: user.passwordHash,
-                role: toPrismaRole(user.role), // Traducimos el rol al guardarlo
+                role: toPrismaRole(user.role),
                 createdAt: user.createdAt,
+                // 🛑 LÓGICA DE CREACIÓN ANIDADA 🛑
+                client: {
+                    create: {
+                        contactPhone: clientData.contactPhone,
+                        companyName: clientData.companyName,
+                    }
+                }
+                // 🛑 FIN DE CREACIÓN ANIDADA 🛑
             },
         });
-        return toDomainUser(newUser); // Devolvemos el usuario traducido
+        return toDomainUser(newUser); // Devuelve el usuario traducido
     }
     async update(user) {
         const updatedUser = await prisma.user.update({

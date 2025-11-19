@@ -20,6 +20,7 @@ describe('Register User Use Case', () => {
             name: 'John Doe',
             email: 'john.doe@example.com',
             password: 'password123',
+            contactPhone: '1112223334' //
         };
 
         const result = await registerUserUseCase.execute(input);
@@ -35,7 +36,8 @@ describe('Register User Use Case', () => {
         await registerUserUseCase.execute({
             name: 'Jane Doe',
             email: 'jane.doe@example.com',
-            password: 'password123',
+            password: 'tu_password_de_prueba',
+            contactPhone: '444555666' //
         });
 
         // Intentamos registrar otro con el mismo email
@@ -43,6 +45,7 @@ describe('Register User Use Case', () => {
             name: 'John Smith',
             email: 'jane.doe@example.com',
             password: 'password456',
+            contactPhone: '777888999' //
         };
 
         await expect(registerUserUseCase.execute(input)).rejects.toThrow('Email already in use.');
@@ -53,6 +56,7 @@ describe('Register User Use Case', () => {
             name: 'John Doe',
             email: 'john.doe@example.com',
             password: 'plain_password',
+            contactPhone: '123123123' //
         };
         
         await registerUserUseCase.execute(input);
