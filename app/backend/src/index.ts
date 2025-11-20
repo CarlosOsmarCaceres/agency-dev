@@ -7,6 +7,7 @@ import userRoutes from './routes/user.routes.js';
 import catalogRoutes from './routes/catalog.routes.js';
 import cartRoutes from './routes/cart.routes.js'; 
 import projectRoutes from './routes/project.routes.js';
+import financeRoutes from './routes/finance.routes.js';
 
 
 // Crear la aplicación Express
@@ -21,13 +22,12 @@ app.get('/', (req: Request, res: Response) => {
   res.send('¡API de Agencia de Desarrollo funcionando!');
 });
 
-// 👇 2. Monta el router de usuarios en la ruta base '/users'
+// 👇 2. Monta el router de proyectos
 app.use('/users', userRoutes);
 app.use('/catalog', catalogRoutes);
 app.use('/cart', cartRoutes);
-
-// 👇 2. Monta el router de proyectos
 app.use('/projects', projectRoutes);
+app.use('/finance', financeRoutes);
 
 // Iniciar el servidor
 app.listen(port, () => {
