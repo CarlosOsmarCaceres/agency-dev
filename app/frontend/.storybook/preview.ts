@@ -1,5 +1,7 @@
 import type { Preview } from "@storybook/react";
-import '../src/index.css'; // 👈 ESTA LÍNEA ES OBLIGATORIA PARA TAILWIND
+
+// 👇👇 ESTA LÍNEA ES OBLIGATORIA. ASEGÚRATE DE QUE ESTÉ AHÍ 👇👇
+import '../src/index.css'; 
 
 const preview: Preview = {
   parameters: {
