@@ -3,6 +3,7 @@ import {  User  } from '../../../domain/Dist/index.js';
 import { UserRole  } from '../../../domain/Dist/index.js';
 import {  Cart  } from '../../../domain/Dist/index.js'; */
 import express from 'express';
+import cors from 'cors';
 import userRoutes from './routes/user.routes.js';
 import catalogRoutes from './routes/catalog.routes.js';
 import cartRoutes from './routes/cart.routes.js';
@@ -10,6 +11,7 @@ import projectRoutes from './routes/project.routes.js';
 import financeRoutes from './routes/finance.routes.js';
 // Crear la aplicación Express
 const app = express();
+app.use(cors()); // Habilitar CORS para todas las rutas
 const port = process.env.PORT || 3000; // Usar variable de entorno o puerto 3000 por defecto
 // Middleware para parsear JSON en las peticiones
 app.use(express.json());

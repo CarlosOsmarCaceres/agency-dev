@@ -13,6 +13,7 @@ import financeRoutes from './routes/finance.routes.js';
 
 // Crear la aplicación Express
 const app: Express = express();
+app.use(cors()); // Habilitar CORS para todas las rutas
 const port = process.env.PORT || 3000; // Usar variable de entorno o puerto 3000 por defecto
 
 // Middleware para parsear JSON en las peticiones
