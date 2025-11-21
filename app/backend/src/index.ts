@@ -3,6 +3,7 @@ import {  User  } from '../../../domain/Dist/index.js';
 import { UserRole  } from '../../../domain/Dist/index.js';
 import {  Cart  } from '../../../domain/Dist/index.js'; */
 import express, { Express, Request, Response } from 'express';
+import cors from 'cors';
 import userRoutes from './routes/user.routes.js';
 import catalogRoutes from './routes/catalog.routes.js';
 import cartRoutes from './routes/cart.routes.js'; 
