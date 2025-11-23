@@ -27,6 +27,7 @@ export const CartPage = () => {
 
       try {
         const data = await getCartRequest(token);
+        console.log("📦 RESPUESTA DEL BACKEND:", data);
         setCart(data);
       } catch (error) {
         console.error(error);
