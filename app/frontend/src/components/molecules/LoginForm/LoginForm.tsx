@@ -77,6 +77,17 @@ export const LoginForm = ({
           disabled={isLoading}
         />
       </div>
+      {/* ... Botón Ingresar ... */}
+
+      <div className="mt-4 text-center text-sm text-gray-600 border-t pt-4">
+        ¿No tienes cuenta? {/* Usamos un enlace simple para navegar */}
+        <a
+          href="/register"
+          className="text-[#1ea7fd] font-bold hover:underline no-underline"
+        >
+          Regístrate aquí
+        </a>
+      </div>
     </form>
   );
 };

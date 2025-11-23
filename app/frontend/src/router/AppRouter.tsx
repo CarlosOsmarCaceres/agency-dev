@@ -2,12 +2,14 @@ import { Routes, Route, Navigate } from "react-router-dom";
 import { LoginPage } from "../pages/LoginPage";
 import { CatalogPage } from "../pages/CatalogPage";
 import { CartPage } from "../pages/CartPage";
+import { RegisterPage } from "../pages/RegisterPage";
 
 export const AppRouter = () => {
   return (
     <Routes>
       {/* Ruta para el Login */}
       <Route path="/login" element={<LoginPage />} />
+      <Route path="/register" element={<RegisterPage />} />
 
       {/* Ruta para el Catálogo */}
       <Route path="/catalog" element={<CatalogPage />} />
