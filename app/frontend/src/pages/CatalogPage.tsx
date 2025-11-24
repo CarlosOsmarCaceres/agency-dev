@@ -47,7 +47,7 @@ export const CatalogPage = () => {
           <h1 className="text-3xl font-bold text-gray-800">
             Nuestros Servicios
           </h1>
-          <Button label="Ver Carrito 🛒" onClick={() => navigate("/cart")} />
+          {/* <Button label="Ver Carrito 🛒" onClick={() => navigate("/cart")} /> */}
         </div>
 
         {/* Aquí usamos 'isLoading' */}
