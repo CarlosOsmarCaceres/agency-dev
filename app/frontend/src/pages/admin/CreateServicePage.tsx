@@ -10,6 +10,7 @@ import {
 export const CreateServicePage = () => {
   const navigate = useNavigate();
   const [isLoading, setIsLoading] = useState(false);
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const [categories, setCategories] = useState<any[]>([]);
 
   // Estado del formulario
@@ -39,7 +40,7 @@ export const CreateServicePage = () => {
         token
       );
 
-      // eslint-disable-next-line no-restricted-globals
+       
       alert("✅ Servicio creado con éxito");
       navigate("/catalog"); // Volver al catálogo público para verlo
     } catch (error) {
