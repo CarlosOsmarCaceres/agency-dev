@@ -48,4 +48,22 @@ export class PrismaCategoryRepository implements ICategoryRepository {
         });
         return toDomainCategory(newCategory);
     }
+
+    async update(category: Category): Promise<Category> {
+        const updatedCategory = await prisma.category.update({
+            where: { id: category.id },
+            data: {
+                name: category.name,
+                description: category.description,
+            },
+        });
+        return toDomainCategory(updatedCategory);
+    }
+
+    // 👇 IMPLEMENTACIÓN DE DELETE
+    async delete(id: string): Promise<void> {
+        await prisma.category.delete({
+            where: { id },
+        });
+    }
 }

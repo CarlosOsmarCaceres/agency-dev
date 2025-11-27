@@ -68,4 +68,10 @@ const whereClause: Prisma.ServiceWhereInput = {}; // Ya no es '{}'
         });
         return toDomainService(updatedService);
     }
+
+    async delete(id: string): Promise<void> {
+        await prisma.service.delete({
+            where: { id },
+        });
+    }
 }

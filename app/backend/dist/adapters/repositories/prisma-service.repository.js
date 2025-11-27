@@ -55,4 +55,9 @@ export class PrismaServiceRepository {
         });
         return toDomainService(updatedService);
     }
+    async delete(id) {
+        await prisma.service.delete({
+            where: { id },
+        });
+    }
 }

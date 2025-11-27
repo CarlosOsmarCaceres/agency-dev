@@ -38,4 +38,20 @@ export class PrismaCategoryRepository {
         });
         return toDomainCategory(newCategory);
     }
+    async update(category) {
+        const updatedCategory = await prisma.category.update({
+            where: { id: category.id },
+            data: {
+                name: category.name,
+                description: category.description,
+            },
+        });
+        return toDomainCategory(updatedCategory);
+    }
+    // 👇 IMPLEMENTACIÓN DE DELETE
+    async delete(id) {
+        await prisma.category.delete({
+            where: { id },
+        });
+    }
 }
