@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { Button } from "../../components/atoms/Button/Button";
 import { Input } from "../../components/atoms/Input/Input";
+import { Category } from '../../../../../domain/dist/entities/catalog/category';
 import {
   createServiceRequest,
   getCategoriesRequest,
@@ -10,8 +11,7 @@ import {
 export const CreateServicePage = () => {
   const navigate = useNavigate();
   const [isLoading, setIsLoading] = useState(false);
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const [categories, setCategories] = useState<any[]>([]);
+  const [categories, setCategories] = useState<Category[]>([]);
 
   // Estado del formulario
   const [formData, setFormData] = useState({
