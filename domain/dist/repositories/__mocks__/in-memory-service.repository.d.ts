@@ -6,5 +6,6 @@ export declare class InMemoryServiceRepository implements IServiceRepository {
     findById(id: string): Promise<Service | null>;
     update(service: Service): Promise<Service>;
     save(service: Service): Promise<Service>;
+    delete(id: string): Promise<void>;
 }
 //# sourceMappingURL=in-memory-service.repository.d.ts.map

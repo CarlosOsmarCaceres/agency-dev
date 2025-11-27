@@ -22,5 +22,11 @@ export class InMemoryServiceRepository {
         this.services.push(service);
         return service;
     }
+    async delete(id) {
+        const index = this.services.findIndex(s => s.id === id);
+        if (index !== -1) {
+            this.services.splice(index, 1);
+        }
+    }
 }
 //# sourceMappingURL=in-memory-service.repository.js.map

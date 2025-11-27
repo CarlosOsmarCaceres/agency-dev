@@ -29,4 +29,10 @@ export class InMemoryServiceRepository implements IServiceRepository {
         this.services.push(service);
         return service;
     }
+    async delete(id: string): Promise<void> {
+        const index = this.services.findIndex(s => s.id === id);
+        if (index !== -1) {
+            this.services.splice(index, 1);
+        }
+    }
 }

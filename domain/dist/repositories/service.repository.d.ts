@@ -7,5 +7,6 @@ export interface IServiceRepository {
     findById(id: string): Promise<Service | null>;
     update(service: Service): Promise<Service>;
     save(service: Service): Promise<Service>;
+    delete(id: string): Promise<void>;
 }
 //# sourceMappingURL=service.repository.d.ts.map
