@@ -4,6 +4,7 @@ import { RegisterPage } from "../pages/RegisterPage";
 import { CatalogPage } from "../pages/CatalogPage";
 import { CartPage } from "../pages/CartPage";
 import { MainLayout } from "../components/layouts/MainLayout";
+import { CreateServicePage } from "../pages/admin/CreateServicePage";
 
 // Admin Imports
 import { AdminGuard } from "./ProtectedRoute";
@@ -31,6 +32,7 @@ export const AppRouter = () => {
         <Route path="/admin" element={<AdminLayout />}>
           <Route index element={<Navigate to="/admin/dashboard" />} />
           <Route path="dashboard" element={<DashboardPage />} />
+          <Route path="services/new" element={<CreateServicePage />} />
         </Route>
       </Route>
 

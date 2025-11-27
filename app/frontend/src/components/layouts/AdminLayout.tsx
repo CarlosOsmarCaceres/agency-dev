@@ -25,6 +25,9 @@ export const AdminLayout = () => {
           <Link to="/admin/users" className="hover:text-[#1ea7fd]">
             Usuarios
           </Link>
+          <Link to="/admin/services/new" className="hover:text-[#1ea7fd]">
+            Crear Servicio
+          </Link>
         </nav>
 
         <div className="mt-auto">
