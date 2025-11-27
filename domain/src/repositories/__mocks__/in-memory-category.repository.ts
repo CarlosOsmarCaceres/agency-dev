@@ -21,4 +21,19 @@ export class InMemoryCategoryRepository implements ICategoryRepository {
         this.categories.push(category);
         return category;
     }
+
+    async update(category: Category): Promise<Category> {
+        const index = this.categories.findIndex(c => c.id === category.id);
+        if (index !== -1) {
+            this.categories[index] = { ...this.categories[index], ...category };
+        }
+        return category;
+    }
+
+    async delete(id: string): Promise<void> {
+        const index = this.categories.findIndex(c => c.id === id);
+        if (index !== -1) {
+            this.categories.splice(index, 1);
+        }
+    }
 }
