@@ -42,6 +42,7 @@ import { UpdateProjectStatusUseCase } from '../../../domain/dist/use-cases/busin
 import { ListInvoicesByClientUseCase } from '../../../domain/dist/use-cases/finance/list-invoices-by-client.use-case.js';
 import { ProcessPaymentUseCase } from '../../../domain/dist/use-cases/finance/process-payment.use-case.js';
 import { CreateManualInvoiceUseCase } from '../../../domain/dist/use-cases/finance/create-manual-invoice.use-case.js';
+import { ListAllProjectsUseCase } from '../../../domain/dist/use-cases/business/list-all-projects.use-case.js';
 // --- 4. INSTANCIAR ADAPTADORES ---
 // (Nota: Idealmente, PrismaClient sería un singleton, pero esto funciona)
 const userRepository = new PrismaUserRepository();
@@ -51,6 +52,7 @@ const serviceRepository = new PrismaServiceRepository();
 const maintenancePlanRepository = new PrismaMaintenancePlanRepository();
 const cartRepository = new PrismaCartRepository();
 const projectRepository = new PrismaProjectRepository();
+export const listAllProjectsUseCase = new ListAllProjectsUseCase(userRepository, projectRepository);
 const invoiceRepository = new PrismaInvoiceRepository();
 const paymentRepository = new PrismaPaymentRepository();
 const encrypter = new BcryptEncrypterAdapter();

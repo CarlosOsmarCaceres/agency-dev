@@ -6,6 +6,7 @@ import { listProjectsByClientController } from '../controllers/list-projects-by-
 import { getProjectDetailsController } from '../controllers/get-project-details.controller.js';
 import { updateProjectStatusController } from '../controllers/update-project-status.controller.js';
 import { assignUserToProjectController } from '../controllers/assign-user-to-project.controller.js';
+import { listAllProjectsController } from '../controllers/list-all-projects.controller.js';
 
 const router = Router();
 
@@ -15,6 +16,7 @@ router.get('/client/:clientId', authMiddleware, listProjectsByClientController);
 router.get('/:projectId', authMiddleware, getProjectDetailsController);
 router.patch('/:projectId/status', authMiddleware, salesMiddleware, updateProjectStatusController);
 router.patch('/:projectId/assign', authMiddleware, salesMiddleware, assignUserToProjectController);
+router.get('/', authMiddleware, salesMiddleware, listAllProjectsController);
 
 // (Aquí añadiremos las otras rutas de proyecto después)
 

@@ -25,6 +25,9 @@ export const AdminLayout = () => {
           <Link to="/admin/services" className="hover:text-[#1ea7fd]">
             Servicios
           </Link>
+          <Link to="/admin/projects" className="hover:text-[#1ea7fd]">
+            Proyectos
+          </Link>
           {/* <Link to="/admin/services/new" className="hover:text-[#1ea7fd]">
             Crear Servicio
           </Link> */}
@@ -35,7 +38,7 @@ export const AdminLayout = () => {
 
         <div className="mt-auto">
           <Button label="Cerrar Sesión" size="small" onClick={handleLogout} />
-          <Link to="/catalog" className="hover:text-[#1ea7fd]" >
+          <Link to="/catalog" className="hover:text-[#1ea7fd]">
             Back
           </Link>
         </div>

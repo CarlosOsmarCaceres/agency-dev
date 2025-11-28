@@ -64,6 +64,11 @@ function toDomainProject(prismaProject: PrismaProject): Project {
 
 export class PrismaProjectRepository implements IProjectRepository {
 
+    async findAll(): Promise<Project[]> {
+        const projects = await prisma.project.findMany();
+        return projects.map(toDomainProject);
+    }
+
     async findById(id: string): Promise<Project | null> {
         const project = await prisma.project.findUnique({
             where: { id },

@@ -62,6 +62,7 @@ import { UpdateProjectStatusUseCase } from '../../../domain/dist/use-cases/busin
 import { ListInvoicesByClientUseCase } from '../../../domain/dist/use-cases/finance/list-invoices-by-client.use-case.js';
 import { ProcessPaymentUseCase } from '../../../domain/dist/use-cases/finance/process-payment.use-case.js';
 import { CreateManualInvoiceUseCase } from '../../../domain/dist/use-cases/finance/create-manual-invoice.use-case.js';
+import { ListAllProjectsUseCase } from '../../../domain/dist/use-cases/business/list-all-projects.use-case.js';
 
 
 // --- 4. INSTANCIAR ADAPTADORES ---
@@ -73,6 +74,7 @@ const serviceRepository: IServiceRepository = new PrismaServiceRepository();
 const maintenancePlanRepository: IMaintenancePlanRepository = new PrismaMaintenancePlanRepository();
 const cartRepository: ICartRepository = new PrismaCartRepository();
 const projectRepository: IProjectRepository = new PrismaProjectRepository();
+export const listAllProjectsUseCase = new ListAllProjectsUseCase(userRepository, projectRepository);
 const invoiceRepository: IInvoiceRepository = new PrismaInvoiceRepository();
 const paymentRepository: IPaymentRepository = new PrismaPaymentRepository();
 

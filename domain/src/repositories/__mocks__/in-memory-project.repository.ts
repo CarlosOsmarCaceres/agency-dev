@@ -10,6 +10,9 @@ export class InMemoryProjectRepository implements IProjectRepository {
         }
         return this.projects[index]!; // Usamos '!' porque asumimos que existe
     }
+    async findAll(): Promise<Project[]> {
+        return this.projects;
+    }
 
     async findById(id: string): Promise<Project | null> {
         return this.projects.find(p => p.id === id) || null;

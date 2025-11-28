@@ -16,6 +16,7 @@ import { AdminCategoriesPage } from "../pages/admin/AdminCategoriesPage";
 import { CreateCategoryPage } from "../pages/admin/CreateCategoryPage";
 import { EditCategoryPage } from "../pages/admin/EditCategoryPage";
 import { AdminUsersPage } from "../pages/admin/AdminUsersPage";
+import { AdminProjectsPage } from "../pages/admin/AdminProjectsPage";
 
 export const AppRouter = () => {
   return (
@@ -45,6 +46,7 @@ export const AppRouter = () => {
           <Route path="categories/new" element={<CreateCategoryPage />} />
           <Route path="categories/edit/:id" element={<EditCategoryPage />} />
           <Route path="users" element={<AdminUsersPage />} />
+          <Route path="projects" element={<AdminProjectsPage />} />
         </Route>
       </Route>
 

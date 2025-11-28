@@ -7,6 +7,9 @@ export class InMemoryProjectRepository {
         }
         return this.projects[index]; // Usamos '!' porque asumimos que existe
     }
+    async findAll() {
+        return this.projects;
+    }
     async findById(id) {
         return this.projects.find(p => p.id === id) || null;
     }

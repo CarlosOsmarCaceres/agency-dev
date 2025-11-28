@@ -56,6 +56,10 @@ function toDomainProject(prismaProject) {
 }
 // --- Fin de Funciones de Traducción ---
 export class PrismaProjectRepository {
+    async findAll() {
+        const projects = await prisma.project.findMany();
+        return projects.map(toDomainProject);
+    }
     async findById(id) {
         const project = await prisma.project.findUnique({
             where: { id },
