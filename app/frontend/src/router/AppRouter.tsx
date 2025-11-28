@@ -11,6 +11,10 @@ import { AdminServicesPage } from "../pages/admin/AdminServicesPage";
 import { AdminGuard } from "./ProtectedRoute";
 import { AdminLayout } from "../components/layouts/AdminLayout";
 import { DashboardPage } from "../pages/admin/DashboardPage";
+import { AdminCategoriesPage } from "../pages/admin/AdminCategoriesPage";
+import { CreateCategoryPage } from "../pages/admin/CreateCategoryPage";
+import { EditCategoryPage } from "../pages/admin/EditCategoryPage";
+
 
 export const AppRouter = () => {
   return (
@@ -35,6 +39,9 @@ export const AppRouter = () => {
           <Route path="dashboard" element={<DashboardPage />} />
           <Route path="services" element={<AdminServicesPage />} />
           <Route path="services/new" element={<CreateServicePage />} />
+          <Route path="categories" element={<AdminCategoriesPage />} />
+          <Route path="categories/new" element={<CreateCategoryPage />} />
+          <Route path="categories/edit/:id" element={<EditCategoryPage />} />
         </Route>
       </Route>
 

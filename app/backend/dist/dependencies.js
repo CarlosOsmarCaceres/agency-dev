@@ -20,6 +20,9 @@ import { ListUsersUseCase } from '../../../domain/dist/use-cases/users/list-user
 import { GetUserByIdUseCase } from '../../../domain/dist/use-cases/users/get-user-by-id.use-case.js';
 import { UpdateUserRoleUseCase } from '../../../domain/dist/use-cases/users/update-user-role.use-case.js';
 import { DeleteUserUseCase } from '../../../domain/dist/use-cases/users/delete-user.use-case.js';
+import { DeleteServiceUseCase } from '../../../domain/dist/use-cases/catalog/delete-service.use-case.js';
+import { UpdateCategoryUseCase } from '../../../domain/dist/use-cases/catalog/update-category.use-case.js';
+import { DeleteCategoryUseCase } from '../../../domain/dist/use-cases/catalog/delete-category.use-case.js';
 // Módulo de Catálogo
 import { CreateCategoryUseCase } from '../../../domain/dist/use-cases/catalog/create-category.use-case.js';
 import { CreateServiceUseCase } from '../../../domain/dist/use-cases/catalog/create-service.use-case.js';
@@ -82,3 +85,6 @@ export const updateProjectStatusUseCase = new UpdateProjectStatusUseCase(userRep
 export const listInvoicesByClientUseCase = new ListInvoicesByClientUseCase(userRepository, clientRepository, invoiceRepository);
 export const processPaymentUseCase = new ProcessPaymentUseCase(invoiceRepository, paymentRepository);
 export const createManualInvoiceUseCase = new CreateManualInvoiceUseCase(userRepository, projectRepository, invoiceRepository);
+export const deleteServiceUseCase = new DeleteServiceUseCase(userRepository, serviceRepository);
+export const updateCategoryUseCase = new UpdateCategoryUseCase(userRepository, categoryRepository);
+export const deleteCategoryUseCase = new DeleteCategoryUseCase(userRepository, categoryRepository);

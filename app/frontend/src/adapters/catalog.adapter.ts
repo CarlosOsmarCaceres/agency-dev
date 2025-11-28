@@ -119,6 +119,58 @@ export const updateCategoryRequest = async (categoryId: string, data: UpdateCate
   if (!response.ok) throw new Error(responseData.error || 'Error al actualizar categoría');
   return responseData;
 };
+export interface CreateCategoryData {
+  name: string;
+  description: string;
+}
+
+// ✅ ESTA ES LA QUE FALTABA
+export const createCategoryRequest = async (data: CreateCategoryData, token: string) => {
+  const response = await fetch(`${API_URL}/catalog/categories`, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${token}`
+    },
+    body: JSON.stringify(data)
+  });
+
+  const responseData = await response.json();
+  if (!response.ok) throw new Error(responseData.error || 'Error al crear categoría');
+  return responseData;
+};
+
+/* export const deleteCategoryRequest = async (categoryId: string, token: string) => {
+  const response = await fetch(`${API_URL}/catalog/categories/${categoryId}`, {
+    method: 'DELETE',
+    headers: { 'Authorization': `Bearer ${token}` }
+  });
+
+  if (!response.ok) {
+    const data = await response.json();
+    throw new Error(data.error || 'Error al eliminar categoría');
+  }
+};
+
+export interface UpdateCategoryData {
+  name?: string;
+  description?: string;
+}
+
+export const updateCategoryRequest = async (categoryId: string, data: UpdateCategoryData, token: string) => {
+  const response = await fetch(`${API_URL}/catalog/categories/${categoryId}`, {
+    method: 'PATCH',
+    headers: {
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${token}`
+    },
+    body: JSON.stringify(data)
+  });
+
+  const responseData = await response.json();
+  if (!response.ok) throw new Error(responseData.error || 'Error al actualizar categoría');
+  return responseData;
+}; */
 
 
 

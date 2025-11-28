@@ -19,19 +19,25 @@ export const AdminLayout = () => {
           <Link to="/admin/dashboard" className="hover:text-[#1ea7fd]">
             Dashboard
           </Link>
+          <Link to="/admin/categories" className="hover:text-[#1ea7fd]">
+            Categorías
+          </Link>
           <Link to="/admin/services" className="hover:text-[#1ea7fd]">
             Servicios
           </Link>
+          {/* <Link to="/admin/services/new" className="hover:text-[#1ea7fd]">
+            Crear Servicio
+          </Link> */}
           <Link to="/admin/users" className="hover:text-[#1ea7fd]">
             Usuarios
-          </Link>
-          <Link to="/admin/services/new" className="hover:text-[#1ea7fd]">
-            Crear Servicio
           </Link>
         </nav>
 
         <div className="mt-auto">
           <Button label="Cerrar Sesión" size="small" onClick={handleLogout} />
+          <Link to="/catalog" className="hover:text-[#1ea7fd]" >
+            Back
+          </Link>
         </div>
       </aside>
 

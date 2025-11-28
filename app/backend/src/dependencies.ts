@@ -114,3 +114,6 @@ export const updateProjectStatusUseCase = new UpdateProjectStatusUseCase(userRep
 export const listInvoicesByClientUseCase = new ListInvoicesByClientUseCase(userRepository, clientRepository, invoiceRepository);
 export const processPaymentUseCase = new ProcessPaymentUseCase(invoiceRepository, paymentRepository);
 export const createManualInvoiceUseCase = new CreateManualInvoiceUseCase(userRepository, projectRepository, invoiceRepository);
+export const deleteServiceUseCase = new DeleteServiceUseCase(userRepository, serviceRepository);
+export const updateCategoryUseCase = new UpdateCategoryUseCase(userRepository, categoryRepository);
+export const deleteCategoryUseCase = new DeleteCategoryUseCase(userRepository, categoryRepository);
