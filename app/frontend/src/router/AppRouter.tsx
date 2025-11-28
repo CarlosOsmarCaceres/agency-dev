@@ -4,41 +4,42 @@ import { RegisterPage } from "../pages/RegisterPage";
 import { CatalogPage } from "../pages/CatalogPage";
 import { CartPage } from "../pages/CartPage";
 import { MainLayout } from "../components/layouts/MainLayout";
-import { CreateServicePage } from "../pages/admin/CreateServicePage";
-import { AdminServicesPage } from "../pages/admin/AdminServicesPage";
 
 // Admin Imports
 import { AdminGuard } from "./ProtectedRoute";
 import { AdminLayout } from "../components/layouts/AdminLayout";
 import { DashboardPage } from "../pages/admin/DashboardPage";
+import { AdminServicesPage } from "../pages/admin/AdminServicesPage";
+import { CreateServicePage } from "../pages/admin/CreateServicePage";
+import { EditServicePage } from "../pages/admin/EditServicePage"; // 👈 1. IMPORTAR ESTO
 import { AdminCategoriesPage } from "../pages/admin/AdminCategoriesPage";
 import { CreateCategoryPage } from "../pages/admin/CreateCategoryPage";
 import { EditCategoryPage } from "../pages/admin/EditCategoryPage";
 
-
 export const AppRouter = () => {
   return (
     <Routes>
-      {/* --- Rutas Públicas (Login y Registro SOLOS) --- */}
+      {/* Rutas Públicas */}
       <Route path="/login" element={<LoginPage />} />
       <Route path="/register" element={<RegisterPage />} />
 
-      {/* ❌ BORRÉ LAS RUTAS SUELTAS DE AQUÍ ❌ */}
-
-      {/* 👇 ZONA DEL CLIENTE (Con NavBar y Logout) 👇 */}
+      {/* Zona Cliente */}
       <Route element={<MainLayout />}>
-        {/* Al estar aquí dentro, heredan la NavBar */}
         <Route path="/catalog" element={<CatalogPage />} />
         <Route path="/cart" element={<CartPage />} />
       </Route>
 
-      {/* --- Rutas de Administrador --- */}
+      {/* Rutas Admin */}
       <Route element={<AdminGuard />}>
         <Route path="/admin" element={<AdminLayout />}>
           <Route index element={<Navigate to="/admin/dashboard" />} />
           <Route path="dashboard" element={<DashboardPage />} />
+          {/* Gestión de Servicios */}
           <Route path="services" element={<AdminServicesPage />} />
           <Route path="services/new" element={<CreateServicePage />} />
+          <Route path="services/edit/:id" element={<EditServicePage />} />{" "}
+          {/* 👈 2. AGREGAR ESTA RUTA */}
+          {/* Gestión de Categorías */}
           <Route path="categories" element={<AdminCategoriesPage />} />
           <Route path="categories/new" element={<CreateCategoryPage />} />
           <Route path="categories/edit/:id" element={<EditCategoryPage />} />

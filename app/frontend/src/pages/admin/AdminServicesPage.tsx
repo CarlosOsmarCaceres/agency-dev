@@ -51,7 +51,8 @@ export const AdminServicesPage = () => {
       await deleteServiceRequest(service.id, token);
       // Recargar la tabla
       loadData();
-    } catch  {
+    } catch (error) {
+      console.error("Error al eliminar servicio:", error);
       alert("Error al eliminar");
       setIsLoading(false); // Aseguramos quitar el loading si falla
     }
