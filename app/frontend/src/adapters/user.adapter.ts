@@ -3,6 +3,21 @@ import { User, UserRole } from ".../../../domain/dist/entities/users/user";
 const API_URL = 'http://localhost:3000';
 
 // 1. Listar todos los usuarios (Solo Admin)
+export const getMyProfileRequest = async (token: string): Promise<User> => {
+  const response = await fetch(`${API_URL}/users/profile`, {
+    method: 'GET',
+    headers: {
+      'Authorization': `Bearer ${token}`
+    }
+  });
+
+  if (!response.ok) {
+    throw new Error('Error al obtener el perfil');
+  }
+
+  return await response.json();
+};
+
 export const getUsersRequest = async (token: string): Promise<User[]> => {
   const response = await fetch(`${API_URL}/users`, {
     method: 'GET',
