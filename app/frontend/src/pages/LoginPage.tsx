@@ -1,35 +1,12 @@
-import { useState } from "react";
-import { useNavigate } from "react-router-dom"; // 👈 Importante
 import { LoginForm } from "../components/molecules/LoginForm/LoginForm";
-import { loginRequest } from "../adapters/auth.adapter";
+import { useAuth } from "../hooks/useAuth"; // 👈 Importamos el hook
 
 export const LoginPage = () => {
-  const [error, setError] = useState<string>("");
-  const [isLoading, setIsLoading] = useState(false);
+  // 👇 Toda la lógica se reduce a esto:
+  const { login, isLoading, error } = useAuth();
 
-  const navigate = useNavigate(); // 👈 Hook de navegación
-
-  const handleLogin = async (formData: { email: string; password: string }) => {
-    setIsLoading(true);
-    setError("");
-
-    try {
-      const token = await loginRequest(formData.email, formData.password);
-
-      // Guardamos token
-      localStorage.setItem("token", token);
-
-      // 👇 LA CLAVE: Redirección en lugar de alerta
-      navigate("/catalog");
-    } catch (err) {
-      if (err instanceof Error) {
-        setError(err.message);
-      } else {
-        setError("Ocurrió un error inesperado");
-      }
-    } finally {
-      setIsLoading(false);
-    }
+  const handleLogin = (formData: { email: string; password: string }) => {
+    login(formData.email, formData.password);
   };
 
   return (
