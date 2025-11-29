@@ -1,0 +1,62 @@
+services:
+  # 1. Base de Datos PostgreSQL
+  db:
+    image: postgres:16-alpine
+    container_name: agency_db
+    restart: always
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: password123
+      POSTGRES_DB: agency_db
+    volumes:
+      - db_data:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+    networks:
+      - agency-network
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+
+  # 2. Backend API
+  backend:
+    build:
+      context: .  # <--- IMPORTANTE: El contexto es la raíz para ver 'domain'
+      dockerfile: app/backend/Dockerfile
+    container_name: agency_backend
+    restart: always
+    ports:
+      - "3000:3000"
+    depends_on:
+      db:
+        condition: service_healthy
+    environment:
+      # Usamos el nombre del servicio 'db' como host
+      DATABASE_URL: "postgresql://postgres:password123@db:5432/agency_db?schema=public"
+      JWT_SECRET: "clave_secreta_para_docker"
+      PORT: 3000
+    networks:
+      - agency-network
+
+  # 3. Frontend (React + Nginx)
+  frontend:
+    build:
+      context: . # <--- IMPORTANTE: Contexto raíz
+      dockerfile: app/frontend/Dockerfile
+    container_name: agency_frontend
+    restart: always
+    ports:
+      - "5173:80" # Mapeamos puerto 80 del contenedor al 5173 de tu máquina
+    depends_on:
+      - backend
+    networks:
+      - agency-network
+
+volumes:
+  db_data:
+
+networks:
+  agency-network:
+    driver: bridge

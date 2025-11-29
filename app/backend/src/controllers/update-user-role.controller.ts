@@ -15,7 +15,7 @@ export const updateUserRoleController = async (req: Request, res: Response) => {
 
         const input: UpdateUserRoleInput = {
             actingUserId,
-            targetUserId,
+            targetUserId: targetUserId as string,
             newRole: newRole as UserRole // El caso de uso validará si es un rol válido
         };
 

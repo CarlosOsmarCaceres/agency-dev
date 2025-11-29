@@ -9,7 +9,7 @@ export const updateUserRoleController = async (req, res) => {
         }
         const input = {
             actingUserId,
-            targetUserId,
+            targetUserId: targetUserId,
             newRole: newRole // El caso de uso validará si es un rol válido
         };
         const updatedUser = await updateUserRoleUseCase.execute(input);

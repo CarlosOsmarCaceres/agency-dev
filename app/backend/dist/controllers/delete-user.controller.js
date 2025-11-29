@@ -3,7 +3,7 @@ export const deleteUserController = async (req, res) => {
     try {
         const actingUserId = req.user.id;
         const { id: targetUserId } = req.params;
-        const input = { actingUserId, targetUserId };
+        const input = { actingUserId, targetUserId: targetUserId };
         await deleteUserUseCase.execute(input);
         return res.status(204).send(); // 204 No Content (éxito sin cuerpo)
     }

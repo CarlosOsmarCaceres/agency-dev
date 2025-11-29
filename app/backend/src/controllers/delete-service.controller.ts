@@ -11,7 +11,7 @@ export const deleteServiceController = async (req: Request, res: Response) => {
 
         const input: DeleteServiceInput = { 
             actingUserId, 
-            serviceId 
+            serviceId: serviceId as string
         };
 
         // 2. Ejecutamos el caso de uso (verifica permisos y elimina)

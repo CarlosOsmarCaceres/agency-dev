@@ -32,7 +32,7 @@ export const authMiddleware = async (req: Request, res: Response, next: NextFunc
 
         // 2. Verificar el token usando nuestro adaptador de JWT
         // Usamos el tipo genérico para que 'payload' sea del tipo ITokenPayload
-        const payload = await authenticator.verifyToken<ITokenPayload>(token);
+        const payload = await authenticator.verifyToken<ITokenPayload>(token!);
 
         if (!payload) {
             // Token inválido o expirado

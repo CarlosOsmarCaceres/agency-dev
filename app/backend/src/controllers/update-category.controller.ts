@@ -15,7 +15,7 @@ export const updateCategoryController = async (req: Request, res: Response) => {
 
         const input: UpdateCategoryInput = {
             actingUserId,
-            categoryId,
+            categoryId: categoryId as string,
             data: {
                 name,
                 description

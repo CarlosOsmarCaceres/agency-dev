@@ -7,7 +7,7 @@ export const deleteUserController = async (req: Request, res: Response) => {
         const actingUserId = req.user!.id;
         const { id: targetUserId } = req.params;
 
-        const input: DeleteUserInput = { actingUserId, targetUserId };
+        const input: DeleteUserInput = { actingUserId, targetUserId: targetUserId as string };
 
         await deleteUserUseCase.execute(input);
         

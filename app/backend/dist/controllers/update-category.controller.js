@@ -9,7 +9,7 @@ export const updateCategoryController = async (req, res) => {
         const { name, description } = req.body;
         const input = {
             actingUserId,
-            categoryId,
+            categoryId: categoryId,
             data: {
                 name,
                 description

@@ -3,7 +3,7 @@ export const getUserByIdController = async (req, res) => {
     try {
         const actingUserId = req.user.id;
         const { id: targetUserId } = req.params;
-        const input = { actingUserId, targetUserId };
+        const input = { actingUserId, targetUserId: targetUserId };
         const user = await getUserByIdUseCase.execute(input);
         return res.status(200).json(user);
     }

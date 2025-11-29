@@ -9,7 +9,7 @@ export const deleteCategoryController = async (req: Request, res: Response) => {
 
         const input: DeleteCategoryInput = {
             actingUserId,
-            categoryId
+            categoryId: categoryId as string // 👈 Forzar string
         };
 
         // Ejecutamos el borrado

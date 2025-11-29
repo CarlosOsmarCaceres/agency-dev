@@ -17,7 +17,7 @@ export const updateServiceController = async (req: Request, res: Response) => {
         // 4. Preparamos el input para el caso de uso
         const input: UpdateServiceInput = {
             actingUserId,
-            serviceId,
+            serviceId: serviceId as string,
             data: {
                 name,
                 description,

@@ -5,7 +5,7 @@ export const deleteCategoryController = async (req, res) => {
         const { id: categoryId } = req.params;
         const input = {
             actingUserId,
-            categoryId
+            categoryId: categoryId // 👈 Forzar string
         };
         // Ejecutamos el borrado
         await deleteCategoryUseCase.execute(input);
