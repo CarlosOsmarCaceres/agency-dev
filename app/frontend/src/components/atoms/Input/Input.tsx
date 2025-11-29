@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useId } from "react"; // 1. Importar useId
 
 export interface InputProps
   extends React.InputHTMLAttributes<HTMLInputElement> {
@@ -10,13 +10,22 @@ export const Input = ({
   label,
   error,
   className = "",
+  id,
   ...props
 }: InputProps) => {
+  // 2. Generamos un ID único si no nos pasan uno
+  const uniqueId = useId();
+  const inputId = id || uniqueId;
+
   return (
     <div className="flex flex-col gap-2 mb-4 font-sans">
-      <label className="text-sm font-semibold text-gray-700">{label}</label>
+      {/* 3. Conectamos el Label con el Input usando htmlFor */}
+      <label htmlFor={inputId} className="text-sm font-semibold text-gray-700">
+        {label}
+      </label>
 
       <input
+        id={inputId} // 4. Asignamos el mismo ID al input
         className={`
           px-3 py-2.5 rounded border text-sm transition-colors duration-200 outline-none
           ${
