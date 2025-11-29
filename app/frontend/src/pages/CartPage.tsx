@@ -21,6 +21,13 @@ export const CartPage = () => {
 
   return (
     <div className="min-h-screen bg-gray-50 p-8">
+      <Button
+        label="← Seguir Comprando"
+        size="small"
+        // Usamos una clase para que parezca un botón secundario (texto gris)
+        className="bg-gray-100 text-gray-600 hover:bg-gray-200 border-0"
+        onClick={() => navigate("/catalog")}
+      />
       <div className="max-w-2xl mx-auto bg-white p-8 rounded-lg shadow border border-gray-100">
         <h1 className="text-3xl font-bold text-gray-800 mb-6">Tu Carrito</h1>
 

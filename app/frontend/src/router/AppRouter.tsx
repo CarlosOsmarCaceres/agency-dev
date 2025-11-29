@@ -27,6 +27,7 @@ export const AppRouter = () => {
 
       {/* Zona Cliente */}
       <Route element={<MainLayout />}>
+        <Route path="/" element={<Navigate to="/catalog" />} />
         <Route path="/catalog" element={<CatalogPage />} />
         <Route path="/cart" element={<CartPage />} />
       </Route>
