@@ -1,64 +1,35 @@
-import { useState, useEffect, useCallback } from "react"; // 👈 Importamos useCallback
+import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import {
-  getServicesRequest,
-  deleteServiceRequest,
-} from "../../adapters/catalog.adapter";
-import { Service } from "../../../../../domain/dist/entities/catalog/service"; // Asegúrate que el path sea correcto
+import { Service } from "../../../../../domain/dist/entities/catalog/service";
 import {
   AdminTable,
   Column,
 } from "../../components/organisms/AdminTable/AdminTable";
 import { Button } from "../../components/atoms/Button/Button";
+// 👇 Importamos el Hook
+import { useCatalog } from "../../hooks/useCatalog";
 
 export const AdminServicesPage = () => {
-  const [services, setServices] = useState<Service[]>([]);
-  // 1. Iniciamos en TRUE para que la primera carga sea automática
-  const [isLoading, setIsLoading] = useState(true);
   const navigate = useNavigate();
 
-  // 2. Usamos useCallback para memorizar la función y evitar ciclos
-  const loadData = useCallback(async () => {
-    // NOTA: Quitamos setIsLoading(true) de aquí para evitar el error del useEffect
-    try {
-      const data = await getServicesRequest();
-      setServices(data);
-    } catch (error) {
-      console.error("Error cargando servicios:", error);
-    } finally {
-      setIsLoading(false);
-    }
-  }, []);
+  // 👇 Toda la lógica compleja se reemplaza por esto:
+  const { services, isLoading, fetchServices, removeService } = useCatalog();
 
   useEffect(() => {
-    loadData();
-  }, [loadData]); // Agregamos loadData a las dependencias
+    fetchServices();
+  }, [fetchServices]);
 
-  // Manejadores
   const handleCreate = () => navigate("/admin/services/new");
-
-  const handleEdit = (service: Service) => {
+  const handleEdit = (service: Service) =>
     navigate(`/admin/services/edit/${service.id}`);
-  };
 
   const handleDelete = async (service: Service) => {
     if (!confirm(`¿Estás seguro de eliminar "${service.name}"?`)) return;
 
-    const token = localStorage.getItem("token") || "";
-    try {
-      // 3. Aquí SÍ activamos el loading manualmente porque es una acción del usuario
-      setIsLoading(true);
-      await deleteServiceRequest(service.id, token);
-      // Recargar la tabla
-      loadData();
-    } catch (error) {
-      console.error("Error al eliminar servicio:", error);
-      alert("Error al eliminar");
-      setIsLoading(false); // Aseguramos quitar el loading si falla
-    }
+    // El hook se encarga de llamar a la API y actualizar la lista
+    await removeService(service.id);
   };
 
-  // Definición de Columnas
   const columns: Column<Service>[] = [
     { header: "Nombre", accessor: "name" },
     { header: "Descripción", accessor: "description" },
