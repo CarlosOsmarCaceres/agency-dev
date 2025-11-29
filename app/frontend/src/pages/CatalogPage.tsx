@@ -1,39 +1,22 @@
 import { useEffect } from "react";
-import { useNavigate } from "react-router-dom";
 import { Button } from "../components/atoms/Button/Button";
-import { addToCartRequest } from "../adapters/cart.adapter";
-// 👇 Importamos el Hook
 import { useCatalog } from "../hooks/useCatalog";
+import { useCart } from "../hooks/useCart";
 
 export const CatalogPage = () => {
-  const navigate = useNavigate();
+  // Ya no necesitamos useNavigate aquí porque la navegación está en el NavBar
 
-  // 👇 Usamos el Hook para obtener datos y estado
   const { services, isLoading, fetchServices } = useCatalog();
+  const { addToCart } = useCart();
 
   useEffect(() => {
     fetchServices();
   }, [fetchServices]);
 
-  // (La lógica de agregar al carrito podría ir en un useCart, pero por ahora la dejamos aquí)
-  const handleAddToCart = async (serviceId: string) => {
-    const token = localStorage.getItem("token");
-    if (!token) {
-      alert("Debes iniciar sesión para comprar.");
-      navigate("/login");
-      return;
-    }
-    try {
-      await addToCartRequest(serviceId, token);
-      alert("✅ ¡Servicio agregado al carrito!");
-    } catch (error) {
-      if (error instanceof Error) alert(`❌ Error: ${error.message}`);
-    }
-  };
-
   return (
     <div className="min-h-screen bg-gray-50 p-8">
       <div className="max-w-6xl mx-auto">
+        {/* 👇 HEADER LIMPIO: Solo el título, sin el botón duplicado 👇 */}
         <h1 className="text-3xl font-bold text-gray-800 mb-6">
           Nuestros Servicios
         </h1>
@@ -59,11 +42,13 @@ export const CatalogPage = () => {
                   <span className="text-2xl font-bold text-[#1ea7fd]">
                     ${service.price}
                   </span>
+
+                  {/* El botón de CONTRATAR sí se queda */}
                   <Button
                     label="Contratar"
                     size="small"
                     primary
-                    onClick={() => handleAddToCart(service.id)}
+                    onClick={() => addToCart(service.id)}
                   />
                 </div>
               </div>

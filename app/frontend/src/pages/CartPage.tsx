@@ -1,65 +1,23 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { getCartRequest, checkoutRequest } from "../adapters/cart.adapter";
 import { Button } from "../components/atoms/Button/Button";
-import { Service } from "../../../../domain/dist/entities/catalog/service.js";
-import { MaintenancePlan } from "../../../../domain/dist/entities/catalog/maintenance-plan.js";
-
-
-// Definimos qué forma tiene el carrito que nos devuelve la API
-interface CartState {
-  id: string;
-  service: Service | null;
-  maintenancePlan: MaintenancePlan | null;
-  // Puedes agregar más campos si los usas (status, price, etc.)
-}
+// 👇 Importamos el Hook
+import { useCart } from "../hooks/useCart";
 
 export const CartPage = () => {
-  // Usamos 'any' por simplicidad ahora, idealmente usaríamos la interfaz Cart del dominio
-  const [cart, setCart] = useState<CartState | null>(null);
-  const [isLoading, setIsLoading] = useState(true);
   const navigate = useNavigate();
 
+  // 👇 Usamos la lógica del hook
+  const { cart, isLoading, loadCart, checkout } = useCart();
+
   useEffect(() => {
-    const fetchCart = async () => {
-      const token = localStorage.getItem("token");
-      if (!token) return navigate("/login");
+    loadCart();
+  }, [loadCart]);
 
-      try {
-        const data = await getCartRequest(token);
-        console.log("📦 RESPUESTA DEL BACKEND:", data);
-        setCart(data);
-      } catch (error) {
-        console.error(error);
-      } finally {
-        setIsLoading(false);
-      }
-    };
-    fetchCart();
-  }, [navigate]);
-
-  const handleCheckout = async () => {
-    const token = localStorage.getItem("token");
-    if (!token) return;
-
-    if (
-      !confirm("¿Estás seguro de confirmar la compra? Se generará una factura.")
-    )
-      return;
-
-    try {
-      const project = await checkoutRequest(token);
-      alert(
-        `✅ ¡Felicidades! Proyecto "${project.project.name}" creado con éxito.`
-      );
-      // Redirigir al inicio o a una página de "Mis Proyectos"
-      navigate("/catalog");
-    } catch (error) {
-      if (error instanceof Error) alert(`❌ Error: ${error.message}`);
-    }
-  };
-
-  if (isLoading) return <div className="p-8">Cargando carrito...</div>;
+  if (isLoading)
+    return (
+      <div className="p-8 text-center text-gray-500">Cargando carrito...</div>
+    );
 
   return (
     <div className="min-h-screen bg-gray-50 p-8">
@@ -96,7 +54,7 @@ export const CartPage = () => {
                 label="Confirmar y Pagar"
                 primary
                 size="large"
-                onClick={handleCheckout}
+                onClick={checkout} // 👇 Usamos la función del hook
               />
             </div>
           </div>
