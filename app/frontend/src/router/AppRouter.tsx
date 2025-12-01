@@ -17,6 +17,7 @@ import { CreateCategoryPage } from "../pages/admin/CreateCategoryPage";
 import { EditCategoryPage } from "../pages/admin/EditCategoryPage";
 import { AdminUsersPage } from "../pages/admin/AdminUsersPage";
 import { AdminProjectsPage } from "../pages/admin/AdminProjectsPage";
+import { HomePage } from "../pages/HomePage";
 
 export const AppRouter = () => {
   return (
@@ -27,7 +28,8 @@ export const AppRouter = () => {
 
       {/* Zona Cliente */}
       <Route element={<MainLayout />}>
-        <Route path="/" element={<Navigate to="/catalog" />} />
+        <Route path="/" element={<HomePage />} />
+        {/* <Route path="/" element={<Navigate to="/catalog" />} /> */}
         <Route path="/catalog" element={<CatalogPage />} />
         <Route path="/cart" element={<CartPage />} />
       </Route>

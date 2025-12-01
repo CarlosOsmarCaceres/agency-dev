@@ -47,6 +47,9 @@ export const NavBar = () => {
 
       <div className="flex items-center gap-6 text-sm font-medium">
         {/* Links de navegación... */}
+        <Link to="/" className="hover:text-[#1ea7fd] transition-colors">
+          Home
+        </Link>
         <Link to="/catalog" className="hover:text-[#1ea7fd] transition-colors">
           Servicios
         </Link>
