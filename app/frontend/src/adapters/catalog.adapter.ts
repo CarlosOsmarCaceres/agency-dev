@@ -1,6 +1,6 @@
 import { Service } from "../../../../domain/dist/entities/catalog/service";
 
-const API_URL = 'http://localhost:3000';
+const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:3000';
 
 // --- 1. GESTIÓN DE SERVICIOS (Público y Privado) ---
 

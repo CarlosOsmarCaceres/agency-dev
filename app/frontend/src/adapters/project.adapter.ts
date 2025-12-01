@@ -1,6 +1,6 @@
 import { Project, ProjectStatus } from "../../../../domain/dist/entities/business/project";
 
-const API_URL = 'http://localhost:3000';
+const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:3000';
 
 // 1. Obtener TODOS los proyectos (Solo Admin/Vendedor)
 export const getAllProjectsRequest = async (token: string): Promise<Project[]> => {

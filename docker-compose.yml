@@ -45,6 +45,9 @@ services:
     build:
       context: . # <--- IMPORTANTE: Contexto raíz
       dockerfile: app/frontend/Dockerfile
+      args:
+        # Para Docker local, el navegador del usuario accede a localhost
+        VITE_API_URL: "http://localhost:3000"
     container_name: agency_frontend
     restart: always
     ports:

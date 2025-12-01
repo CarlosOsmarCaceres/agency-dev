@@ -24,6 +24,8 @@ WORKDIR /usr/src/app/app/frontend
 
 # 4. Instalamos las dependencias del FRONTEND ESPECÍFICAMENTE
 # (Esto asegura que 'vite' esté disponible aquí)
+ARG VITE_API_URL
+ENV VITE_API_URL=$VITE_API_URL
 RUN npm install --legacy-peer-deps && npm install -D @rollup/rollup-linux-x64-musl --legacy-peer-deps
 
 # 5. Compilamos el Frontend
