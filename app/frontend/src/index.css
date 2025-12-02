@@ -1,3 +1,14 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/* 👇 FORZAMOS EL MODO OSCURO EN TODA LA APP */
+html, body, #root {
+  background-color: #0a051e; /* Color base 'evo-dark' */
+  color: white;
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  min-height: 100vh;
+  overflow-x: hidden;
+}
