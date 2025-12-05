@@ -37,36 +37,53 @@ export const NavBar = () => {
 
   return (
     // Agregamos z-50 para asegurar que el menú esté siempre encima del contenido 3D
-    <nav className="bg-[#0f172a]/90 backdrop-blur-md text-white shadow-lg border-b border-gray-800 px-6 py-4 flex justify-between items-center sticky top-0 z-50">
+    <nav className="bg-[#0f172a] backdrop-blur-md text-white shadow-lg border-b border-gray-800 px-6 py-4 flex justify-between items-center font-mono text-sm md:text-base tracking-widest sticky top-0 z-50">
       <Link
         to="/"
-        className="text-2xl font-bold text-white hover:text-[#1ea7fd] transition-colors"
+        className="text-2xl font-bold text-white hover:text-[#9ff818] transition-colors"
       >
-        Agencia<span className="text-[#1ea7fd]">Dev</span>
+        Agencia<span className="text-[#9ff818]">Dev</span>
       </Link>
 
       <div className="flex items-center gap-6 text-sm font-medium">
         {/* Links de navegación... */}
-        <Link to="/" className="hover:text-[#1ea7fd] transition-colors">
-          Home
+        <Link
+          to="/"
+          className="text-[#ba68c8] hover:text-[#9ff818] hover:font-bold transition-colors"
+        >
+          HOME
         </Link>
-        <Link to="/catalog" className="hover:text-[#1ea7fd] transition-colors">
-          Servicios
+        <Link
+          to="/catalog"
+          className="text-[#ba68c8] hover:text-[#9ff818] transition-colors"
+        >
+          SERVICIOS
         </Link>
-        <Link to="/cart" className="hover:text-[#1ea7fd] transition-colors">
-          Carrito
+        <Link
+          to="/cart"
+          className="text-[#ba68c8] hover:text-[#9ff818] transition-colors"
+        >
+          CARRITO
         </Link>
 
         {showAdminPanel && (
           <Link
             to="/admin/dashboard"
-            className="text-[#1ea7fd] border border-[#1ea7fd] px-3 py-1 rounded hover:bg-[#1ea7fd] hover:text-white transition-colors"
+            className="relative px-8 py-2 group overflow-hidden
+        bg-transparent border border-evo-purple/50 rounded-none
+        text-white font-mono tracking-widest font-bold uppercase
+        hover:bg-evo-purple/10 transition-all duration-300
+        hover:shadow-[0_0_30px_rgba(156,39,176,0.4)]"
           >
-            ⚙️ Admin
+            <div className="absolute inset-0 w-full h-full bg-[linear-gradient(45deg,transparent_25%,rgba(159,248,24,0.1)_50%,transparent_75%)] bg-[length:250%_250%] bg-left-top hover:bg-right-bottom transition-all duration-500 opacity-0 group-hover:opacity-100" />
+            {/* Bordes animados */}
+            <span className="absolute top-0 left-0 w-2 h-2 border-t-2 border-l-2 border-evo-lime transition-all duration-300 group-hover:w-full group-hover:h-full" />
+            <span className="absolute bottom-0 right-0 w-2 h-2 border-b-2 border-r-2 border-evo-lime transition-all duration-300 group-hover:w-full group-hover:h-full" />
+            ⚙️ ADMIN
           </Link>
         )}
 
-        <div className="h-6 w-px bg-gray-700 mx-2"></div>
+        <div className="h-6 w-px bg-[#9ff818] mx-2"></div>
 
         {/* 👇 AQUÍ MOSTRAMOS EL NOMBRE 👇 */}
         {userName && (
@@ -82,7 +99,11 @@ export const NavBar = () => {
           label="Salir"
           size="small"
           onClick={handleLogout}
-          className="bg-transparent border border-gray-600 text-gray-300 hover:border-red-500 hover:text-red-500"
+          className="relative px-8 py-2 group overflow-hidden
+        bg-transparent border border-evo-purple/50 rounded-none
+        text-white font-mono tracking-widest font-bold uppercase
+        hover:bg-evo-purple/10 transition-all duration-300
+        hover:shadow-[0_0_30px_rgba(156,39,176,0.4)]"
         />
       </div>
     </nav>

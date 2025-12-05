@@ -6,9 +6,7 @@ export const EvolutionText = () => {
       <div className="relative inline-block">
         {/* Texto Principal */}
         <h1 className="text-5xl md:text-7xl font-display font-black text-transparent bg-clip-text bg-gradient-to-r from-white via-evo-lightPurple to-evo-lime animate-pulse">
-          ESTAMOS
-          <br />
-          EVOLUCIONANDO
+          Transforma tu visión en realidad digital
         </h1>
 
         {/* Decoraciones Tech */}
@@ -17,15 +15,20 @@ export const EvolutionText = () => {
 
         {/* Scanline simulada */}
         <motion.div
-          className="absolute top-0 left-0 w-full h-1 bg-evo-lime/50 opacity-50"
+          className="absolute top-0 left-0 w-full h-2 bg-evo-lime/50 opacity-50"
           animate={{ top: ["0%", "100%"] }}
           transition={{ repeat: Infinity, duration: 3, ease: "linear" }}
         />
       </div>
+      <div className="flex justify-center">
+        <p className="text-evo-lightPurple max-w-[50rem] font-mono mt-4 text-sm md:text-base text-center tracking-widest">
+          En SomosDev, combinamos innovación y tecnología para llevar tu negocio
+          al siguiente nivel. Nuestro enfoque está en crear experiencias digitales
+          únicas que resalten en el mundo digital.
+        </p>
 
-      <p className="text-evo-lightPurple font-mono mt-4 text-sm md:text-base tracking-widest">
-        PROYECTO: GENESIS // FASE 2
-      </p>
+      </div>
+
     </div>
   );
 };
