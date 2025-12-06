@@ -1,16 +1,26 @@
-import { useNavigate } from "react-router-dom";
-// 👇 1. Importamos el componente de átomos que acabamos de arreglar
-// (Asegúrate de que la ruta coincida con donde guardaste AtomicBackground.tsx)
-
-// 👇 2. Asumo que estos componentes ya los tienes creados de la propuesta anterior.
-// Si te falta alguno (EvolutionText, Portal, Button), avísame y te paso el código.
-
+import { useLocation, useNavigate } from "react-router-dom";
+import { useEffect } from "react";
 import { EvolutionText } from "../components/molecules/Evolution/EvolutionText";
 import { HolographicButton } from "../components/molecules/Evolution/HolographicButton";
 import { OurWorkSection } from "../components/organisms/OurWorkSection";
 
 export const HomePage = () => {
   const navigate = useNavigate();
+  const location = useLocation();
+
+  // 👇 LÓGICA DE SCROLL AUTOMÁTICO AL CARGAR
+  useEffect(() => {
+    // Si la URL tiene un hash (ej: #nuestro-trabajo)
+    if (location.hash) {
+      const element = document.getElementById(location.hash.substring(1));
+      if (element) {
+        // Pequeño timeout para asegurar que el DOM esté listo
+        setTimeout(() => {
+          element.scrollIntoView({ behavior: "smooth" });
+        }, 100);
+      }
+    }
+  }, [location]);
 
   return (
     // bg-black asegura que si el 3D tarda en cargar, el fondo sea negro
@@ -36,7 +46,7 @@ export const HomePage = () => {
             onClick={() => navigate("/catalog")}
             withArrow={true} // Activamos la flecha
           >
-           Servicios
+            Servicios
           </HolographicButton>
         </div>
         <OurWorkSection />

@@ -24,7 +24,7 @@ const features = [
     icon: <Wrench size={32} />,
     title: "Mantenimiento Web",
     description:
-      "Optimización y mantenimiento de sitios web en WordPress para potenciar su rendimiento y escalabilidad.",
+      "Optimización y mantenimiento de sitios web en Reacts para potenciar su rendimiento y escalabilidad.",
     color: "text-evo-lime", // Asumiendo que tienes este color, si no usa text-lime-400
     bgHover: "group-hover:bg-lime-400/10",
     borderHover: "group-hover:border-lime-400/50",
@@ -33,7 +33,10 @@ const features = [
 
 export const OurWorkSection = () => {
   return (
-    <section className="relative py-24  overflow-hidden">
+    <section
+      id="nuestro-trabajo"
+      className="relative py-24  overflow-hidden scroll-mt-24"
+    >
       {/* Elementos decorativos de fondo */}
       <div className="absolute top-0 right-0 w-[500px] h-[500px]  rounded-full blur-[100px] pointer-events-none" />
       <div className="absolute bottom-0 left-0 w-[500px] h-[500px]  rounded-full blur-[100px] pointer-events-none" />
