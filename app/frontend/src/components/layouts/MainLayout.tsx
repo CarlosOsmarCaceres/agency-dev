@@ -1,5 +1,6 @@
 import { Outlet } from "react-router-dom";
 import { NavBar } from "../molecules/NavBar/NavBar";
+import { Footer } from "../molecules/Footer/Footer";
 
 export const MainLayout = () => {
   return (
@@ -13,9 +14,7 @@ export const MainLayout = () => {
       </main>
 
       {/* Podrías agregar un Footer aquí también */}
-      <footer className="bg-white p-4 text-center text-gray-400 text-sm border-t mt-auto">
-        © 2025 Agencia Dev - Todos los derechos reservados
-      </footer>
+      <Footer />
     </div>
   );
 };
