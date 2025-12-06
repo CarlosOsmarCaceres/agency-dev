@@ -180,6 +180,15 @@ const NavLinks = ({
       navigate("/#nuestro-trabajo");
     }
   };
+  const handleScrollToContact = () => {
+    if (onLinkClick) onLinkClick();
+    if (location.pathname === "/") {
+      const element = document.getElementById("contacto");
+      if (element) element.scrollIntoView({ behavior: "smooth" });
+    } else {
+      navigate("/#contacto");
+    }
+  };
 
   return (
     <>
@@ -194,6 +203,15 @@ const NavLinks = ({
         className={getLinkClass("/", "nuestro-trabajo")}
       >
         NOSOTROS
+      </button>
+      {/* BOTÓN CONTACTO CORREGIDO */}
+      <button
+        onClick={handleScrollToContact}
+        // Usamos la función getLinkClass igual que en "NOSOTROS"
+        // Esto arregla el error y además activa el color verde automático
+        className={getLinkClass("/", "contacto")}
+      >
+        CONTACTO
       </button>
 
       {/* LINK SERVICIOS */}

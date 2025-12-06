@@ -3,6 +3,7 @@ import { useEffect } from "react";
 import { EvolutionText } from "../components/molecules/Evolution/EvolutionText";
 import { HolographicButton } from "../components/molecules/Evolution/HolographicButton";
 import { OurWorkSection } from "../components/organisms/OurWorkSection";
+import { ContactSection } from "../components/organisms/ContactSection";
 
 export const HomePage = () => {
   const navigate = useNavigate();
@@ -56,6 +57,8 @@ export const HomePage = () => {
         </div>
 
         <OurWorkSection />
+
+        <ContactSection />
       </div>
 
       {/* Footer simple */}
