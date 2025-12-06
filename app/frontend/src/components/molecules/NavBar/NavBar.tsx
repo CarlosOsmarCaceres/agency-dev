@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
-import { Button } from "../../atoms/Button/Button";
-import { isAdmin } from "../../../utils/auth.utils";
-import { getMyProfileRequest } from "../../../adapters/user.adapter";
-import { User as UserIcon, Menu, X } from "lucide-react"; // 👈 Agregamos Menu y X
+import { Button } from "../../atoms/Button/Button"; // Asegúrate que esta ruta sea correcta
+import { isAdmin } from "../../../utils/auth.utils"; // Asegúrate que esta ruta sea correcta
+import { getMyProfileRequest } from "../../../adapters/user.adapter"; // Asegúrate que esta ruta sea correcta
+import { User as UserIcon, Menu, X, LogOut } from "lucide-react";
 
 export const NavBar = () => {
   const navigate = useNavigate();
@@ -11,19 +11,26 @@ export const NavBar = () => {
 
   // Estado para el nombre del usuario
   const [userName, setUserName] = useState("");
-  // 👇 NUEVO: Estado para abrir/cerrar menú móvil
+
+  // Estado para abrir/cerrar menú móvil
   const [isOpen, setIsOpen] = useState(false);
 
   useEffect(() => {
     const fetchProfile = async () => {
       const token = localStorage.getItem("token");
-      if (!token) return;
+
+      // Si no hay token, no intentamos cargar el perfil
+      if (!token) {
+        setUserName("");
+        return;
+      }
 
       try {
         const userProfile = await getMyProfileRequest(token);
         setUserName(userProfile.name);
       } catch (error) {
         console.error("No se pudo cargar el perfil", error);
+        // Si el token es inválido, podrías forzar logout aquí si quisieras
       }
     };
     fetchProfile();
@@ -31,6 +38,7 @@ export const NavBar = () => {
 
   const handleLogout = () => {
     localStorage.removeItem("token");
+    setUserName(""); // Limpiamos el estado
     navigate("/login");
   };
 
@@ -79,12 +87,11 @@ export const NavBar = () => {
 
       {/* 2. Sidebar deslizante (Izquierda a Derecha) */}
       <div
-        className={`fixed top-0 left-0 h-full w-[75%] max-w-sm bg-evo-bg/95 backdrop-blur-xl border-r border-gray-800 z-40 shadow-2xl transform transition-transform duration-300 ease-in-out md:hidden ${
+        className={`fixed top-0 left-0 h-full w-[80%] max-w-sm bg-evo-bg/95 backdrop-blur-xl border-r border-gray-800 z-40 shadow-2xl transform transition-transform duration-300 ease-in-out md:hidden ${
           isOpen ? "translate-x-0" : "-translate-x-full"
         }`}
       >
-        <div className="flex flex-col h-screen pt-24 px-6 gap-8 bg-evo-bg/95">
-          {/* Reutilizamos los links pero en columna */}
+        <div className="flex flex-col h-screen pt-24 px-6 gap-6 bg-evo-bg/95">
           <NavLinks
             showAdminPanel={showAdminPanel}
             userName={userName}
@@ -98,33 +105,24 @@ export const NavBar = () => {
   );
 };
 
-// 👇 COMPONENTE AUXILIAR PARA NO REPETIR CÓDIGO (LINKS)
-type NavLinksProps = {
-  showAdminPanel: boolean;
-  userName: string;
-  handleLogout: () => void;
-  isMobile?: boolean;
-  onLinkClick?: () => void;
-};
-
+// 👇 COMPONENTE AUXILIAR DE LINKS
 const NavLinks = ({
   showAdminPanel,
   userName,
   handleLogout,
   isMobile = false,
   onLinkClick = () => {},
-}: NavLinksProps) => {
+}) => {
   const baseLinkClass =
-    "text-evo-lightPurple hover:text-evo-lime transition-colors";
+    "text-evo-lightPurple hover:text-evo-lime transition-colors duration-200";
 
   return (
     <>
-    
       <Link
         to="/"
         onClick={onLinkClick}
         className={`${baseLinkClass} ${
-          isMobile ? "text-lg border-b border-gray-800 pb-2" : "hover:font-bold"
+          isMobile ? "text-lg border-b border-gray-800 pb-3" : "hover:font-bold"
         }`}
       >
         HOME
@@ -133,7 +131,7 @@ const NavLinks = ({
         to="/catalog"
         onClick={onLinkClick}
         className={`${baseLinkClass} ${
-          isMobile ? "text-lg border-b border-gray-800 pb-2" : ""
+          isMobile ? "text-lg border-b border-gray-800 pb-3" : ""
         }`}
       >
         SERVICIOS
@@ -142,48 +140,72 @@ const NavLinks = ({
         to="/cart"
         onClick={onLinkClick}
         className={`${baseLinkClass} ${
-          isMobile ? "text-lg border-b border-gray-800 pb-2" : ""
+          isMobile ? "text-lg border-b border-gray-800 pb-3" : ""
         }`}
       >
         CARRITO
       </Link>
 
+      {/* Botón de Admin */}
       {showAdminPanel && (
         <Link
           to="/admin/dashboard"
           onClick={onLinkClick}
-          className={`relative px-8 py-2 group overflow-hidden bg-transparent border border-evo-purple/50 rounded-none text-white font-mono tracking-widest font-bold uppercase hover:bg-evo-purple/10 transition-all duration-300 hover:shadow-[0_0_30px_rgba(156,39,176,0.4)] ${
-            isMobile ? "text-center w-full" : ""
+          className={`relative px-6 py-2 group overflow-hidden bg-transparent border border-evo-purple/50 text-white font-mono tracking-widest font-bold uppercase hover:bg-evo-purple/10 transition-all duration-300 hover:shadow-[0_0_15px_rgba(156,39,176,0.4)] ${
+            isMobile ? "text-center w-full mt-2" : ""
           }`}
         >
-          <span className="relative z-10">⚙️ ADMIN</span>
+          <span className="relative z-10 flex items-center justify-center gap-2">
+            ADMIN
+          </span>
         </Link>
       )}
 
-      {!isMobile && <div className="h-6 w-px bg-evo-lime mx-2"></div>}
+      {/* Separador Vertical (Solo Desktop) */}
+      {!isMobile && <div className="h-6 w-px bg-gray-700/50 mx-2"></div>}
 
-      {/* Mostrar usuario */}
+      {/* --- SECCIÓN DE USUARIO --- */}
       {userName && (
         <div
-          className={`flex items-center gap-2 text-gray-300 ${
-            isMobile ? "mt-4 justify-center" : "mr-2"
+          className={`flex items-center gap-3 ${
+            isMobile ? "mt-4 mb-2 justify-center w-full flex-col" : "mr-2"
           }`}
         >
-          <div className="bg-gray-700 p-1 rounded-full">
-            <UserIcon size={16} />
+          {/* Texto de saludo (Solo Desktop) */}
+          {!isMobile && (
+            <span className="text-gray-400 text-xs uppercase tracking-wider">
+              Hola,
+            </span>
+          )}
+
+          {/* Chip del Nombre */}
+          <div
+            className={`flex items-center gap-2 border border-evo-purple/40 bg-evo-purple/10 px-4 py-1.5 rounded-full shadow-[0_0_10px_rgba(156,39,176,0.15)] ${
+              isMobile ? "w-full justify-center py-3" : ""
+            }`}
+          >
+            <UserIcon size={16} className="text-evo-lime" />
+            <span className="font-bold text-white tracking-wide text-sm uppercase truncate max-w-[150px]">
+              {userName}
+            </span>
           </div>
-          <span className="font-semibold text-white">{userName}</span>
         </div>
       )}
 
+      {/* --- BOTÓN LOGOUT --- */}
       <Button
-        label="Salir"
+        label={
+          <span className="flex items-center gap-2">
+            Salir <LogOut size={16} />
+          </span>
+        }
         size="small"
         onClick={() => {
           handleLogout();
           if (onLinkClick) onLinkClick();
         }}
-        className={`relative px-8 py-2 group overflow-hidden bg-transparent border border-evo-purple/50 rounded-none text-white font-mono tracking-widest font-bold uppercase hover:bg-evo-purple/10 transition-all duration-300 hover:shadow-[0_0_30px_rgba(156,39,176,0.4)] ${
+        // Estilo especial rojo/alerta para logout
+        className={`relative px-6 py-2 group overflow-hidden bg-transparent border border-red-500/30 hover:border-red-500 text-gray-300 hover:text-white font-mono tracking-widest font-bold uppercase hover:bg-red-500/10 transition-all duration-300 ${
           isMobile ? "w-full mt-auto mb-8" : ""
         }`}
       />
