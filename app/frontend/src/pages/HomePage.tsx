@@ -24,7 +24,10 @@ export const HomePage = () => {
 
   return (
     // bg-black asegura que si el 3D tarda en cargar, el fondo sea negro
-    <div className="relative min-h-screen w-full overflow-hidden flex flex-col items-center justify-center font-display bg-evo-bg z-30">
+    <div
+      id="home"
+      className="relative min-h-screen w-full overflow-hidden flex flex-col items-center justify-center font-display bg-evo-bg z-30"
+    >
       {/* 1. Fondo de Átomos Dinámicos */}
       {/* Este componente ya tiene posición 'fixed' y z-index negativo internamente */}
       <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-violet-600/10 rounded-full blur-[100px] pointer-events-none" />
@@ -51,7 +54,7 @@ export const HomePage = () => {
             Servicios
           </HolographicButton>
         </div>
-        
+
         <OurWorkSection />
       </div>
 
