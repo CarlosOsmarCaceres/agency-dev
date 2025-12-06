@@ -104,7 +104,13 @@ export const NavBar = () => {
     </nav>
   );
 };
-
+type NavLinksProps = {
+  showAdminPanel: boolean;
+  userName: string;
+  handleLogout: () => void;
+  isMobile?: boolean;      // El ? indica que es opcional
+  onLinkClick?: () => void; // El ? indica que es opcional
+};
 // 👇 COMPONENTE AUXILIAR DE LINKS
 const NavLinks = ({
   showAdminPanel,
@@ -112,7 +118,7 @@ const NavLinks = ({
   handleLogout,
   isMobile = false,
   onLinkClick = () => {},
-}) => {
+}: NavLinksProps) => {
   const baseLinkClass =
     "text-evo-lightPurple hover:text-evo-lime transition-colors duration-200";
 

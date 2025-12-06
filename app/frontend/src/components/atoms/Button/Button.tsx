@@ -1,10 +1,9 @@
 import React from "react";
 
-export interface ButtonProps
-  extends React.ButtonHTMLAttributes<HTMLButtonElement> {
+export interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   primary?: boolean;
   size?: "small" | "medium" | "large";
-  label: string;
+  label: React.ReactNode;
 }
 
 export const Button = ({
