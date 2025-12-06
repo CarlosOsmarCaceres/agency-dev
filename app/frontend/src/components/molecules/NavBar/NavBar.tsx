@@ -225,7 +225,7 @@ const NavLinks = ({
       {/* --- BOTÓN LOGOUT --- */}
       <Button
         label={
-          <span className="flex items-center gap-2">
+          <span className="flex items-center gap-2 text-white">
             Salir <LogOut size={16} />
           </span>
         }

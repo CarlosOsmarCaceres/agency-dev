@@ -1,12 +1,14 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { Instagram, Linkedin, Facebook, Heart } from "lucide-react";
+import { Instagram, Linkedin, Facebook } from "lucide-react";
 
 export const Footer = () => {
   return (
     <footer className="relative bg-gray-900  border-white/10  pt-12 pb-8">
+      <div className="absolute top-0 right-0 w-[500px]  bg-violet-600/10 rounded-full blur-[100px] pointer-events-none" />
+      <div className="absolute bottom-[100%] left-0 w-[500px] h-[500px] bg-cyan-500/10 rounded-full blur-[100px] pointer-events-none" />
       {/* 1. Glow Ambiental de Fondo */}
-      <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[500px] h-[300px] bg-violet-600/10 blur-[120px] rounded-full pointer-events-none" />
+      <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[500px] h-[300px]  blur-[120px] rounded-full pointer-events-none" />
 
       <div className="relative z-10 max-w-7xl mx-auto px-6">
         <div className="flex flex-col md:flex-row justify-between items-center gap-8 mb-6">
@@ -26,17 +28,17 @@ export const Footer = () => {
           {/* BLOQUE 2: REDES SOCIALES */}
           <div className="flex items-center gap-4">
             <SocialIcon
-              href="https://instagram.com"
+              href="https://www.instagram.com/somosdev.ar/"
               icon={<Instagram size={20} />}
               label="Instagram"
             />
             <SocialIcon
-              href="https://linkedin.com"
+              href="https://www.linkedin.com/in/carlos-osmar-caceres-tlt/"
               icon={<Linkedin size={20} />}
               label="LinkedIn"
             />
             <SocialIcon
-              href="https://facebook.com"
+              href="https://www.instagram.com/somosdev.ar/"
               icon={<Facebook size={20} />}
               label="Facebook"
             />
@@ -67,14 +69,14 @@ export const Footer = () => {
         {/* COPYRIGHT */}
         <div className="flex flex-col md:flex-row justify-between items-center text-xs text-gray-500 font-mono gap-4">
           <p>© 2025 AGENCIA DEV. TODOS LOS DERECHOS RESERVADOS.</p>
-          <p className="flex items-center gap-2">
+          {/* <p className="flex items-center gap-2">
             HECHO CON{" "}
             <Heart
               size={12}
               className="text-red-500 fill-red-500 animate-pulse"
             />{" "}
             EN ARGENTINA
-          </p>
+          </p> */}
         </div>
       </div>
     </footer>

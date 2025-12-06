@@ -1,8 +1,9 @@
 import { motion } from "framer-motion";
 
+
 export const EvolutionText = () => {
   return (
-    <div className="relative text-center p-4">
+    <div className="relative text-center p-4 pt-28">
       <div className="relative inline-block">
         {/* Texto Principal */}
         <h1 className="text-5xl md:text-7xl font-display font-black text-transparent bg-clip-text bg-gradient-to-r from-white via-evo-lightPurple to-evo-lime animate-pulse">
@@ -21,6 +22,7 @@ export const EvolutionText = () => {
         />
       </div>
       <div className="flex justify-center">
+        
         <p className="text-evo-lightPurple max-w-[50rem] font-mono mt-4 text-sm md:text-base text-center tracking-widest">
           En SomosDev, combinamos innovación y tecnología para llevar tu negocio
           al siguiente nivel. Nuestro enfoque está en crear experiencias digitales
