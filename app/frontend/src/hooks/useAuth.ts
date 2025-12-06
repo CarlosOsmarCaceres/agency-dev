@@ -13,7 +13,7 @@ export const useAuth = () => {
     try {
       const token = await loginRequest(email, password);
       localStorage.setItem('token', token);
-      navigate('/catalog');
+      navigate('/');
     } catch (err) {
       if (err instanceof Error) {
         setError(err.message);
