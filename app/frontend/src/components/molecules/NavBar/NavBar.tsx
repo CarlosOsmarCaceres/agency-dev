@@ -120,17 +120,26 @@ const NavLinks = ({
     if (location.pathname !== "/") return;
 
     const handleScroll = () => {
-      // Obtenemos las secciones
+      // 1. Obtenemos TODAS las secciones (te faltaba contacto)
       const heroSection = document.getElementById("home");
       const workSection = document.getElementById("nuestro-trabajo");
+      const contactSection = document.getElementById("contacto"); // <--- NUEVO
 
-      if (!heroSection || !workSection) return;
+      // Si falta alguna sección crítica, no hacemos nada para evitar errores
+      if (!heroSection || !workSection || !contactSection) return;
 
-      // Lógica simple: Si el "Trabajo" está cerca del top, es el activo.
-      // 150px es un offset para que cambie un poco antes de llegar
+      // 2. Obtenemos las posiciones
       const workPosition = workSection.getBoundingClientRect().top;
+      const contactPosition = contactSection.getBoundingClientRect().top;
 
-      if (workPosition < 300) {
+      // 3. Lógica de prioridad (DE ABAJO HACIA ARRIBA)
+      // Verificamos primero Contacto, porque está más abajo.
+      // Usamos 300px o la mitad de la ventana como punto de activación
+      const triggerPoint = window.innerHeight / 2;
+
+      if (contactPosition < triggerPoint) {
+        setActiveSection("contacto"); // <--- AHORA SÍ SE ACTIVA
+      } else if (workPosition < 300) {
         setActiveSection("nuestro-trabajo");
       } else {
         setActiveSection("home");
