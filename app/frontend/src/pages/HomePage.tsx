@@ -13,7 +13,7 @@ export const HomePage = () => {
 
   return (
     // bg-black asegura que si el 3D tarda en cargar, el fondo sea negro
-    <div className="relative min-h-screen w-full overflow-hidden flex flex-col items-center justify-center font-display bg-black">
+    <div className="relative min-h-screen w-full overflow-hidden flex flex-col items-center justify-center font-display bg-evo-bg">
       {/* 1. Fondo de Átomos Dinámicos */}
       {/* Este componente ya tiene posición 'fixed' y z-index negativo internamente */}
 
@@ -38,7 +38,7 @@ export const HomePage = () => {
       </div>
 
       {/* Footer simple */}
-      <div className="absolute bottom-6 text-[#ba68c8]/50 text-xs font-mono tracking-widest">
+      <div className="absolute bottom-6 text-evo-lightPurple/50 text-xs font-mono tracking-widest">
         AGENCIA DEV v2.0 // SYSTEM_ONLINE
       </div>
     </div>

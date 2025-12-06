@@ -11,6 +11,7 @@ export default {
                 primary: '#1ea7fd', // Mantenemos el azul original por si acaso
                 evo: {
                     dark: '#0a051e',       // Fondo principal (Violeta muy oscuro)
+                    bg: '#101728',      // Fondo alternativo (Azul muy oscuro)
                     deep: '#1a0f2e',       // Fondo secundario
                     purple: '#9c27b0',     // Violeta Neón
                     lightPurple: '#ba68c8',// Violeta Claro

@@ -37,31 +37,31 @@ export const NavBar = () => {
 
   return (
     // Agregamos z-50 para asegurar que el menú esté siempre encima del contenido 3D
-    <nav className="bg-[#0f172a] backdrop-blur-md text-white shadow-lg border-b border-gray-800 px-6 py-4 flex justify-between items-center font-mono text-sm md:text-base tracking-widest sticky top-0 z-50">
+    <nav className=" fixed w-full bg-evo-bg/80 backdrop-blur-md text-white shadow-lg border-b border-gray-800 px-6 py-4 flex justify-between items-center font-mono text-sm md:text-base tracking-widest top-0 z-50">
       <Link
         to="/"
-        className="text-2xl font-bold text-white hover:text-[#9ff818] transition-colors"
+        className="text-2xl font-bold text-white hover:text-evo-lime transition-colors"
       >
-        Agencia<span className="text-[#9ff818]">Dev</span>
+        Somos<span className="text-evo-lime">Dev</span>
       </Link>
 
       <div className="flex items-center gap-6 text-sm font-medium">
         {/* Links de navegación... */}
         <Link
           to="/"
-          className="text-[#ba68c8] hover:text-[#9ff818] hover:font-bold transition-colors"
+          className="text-evo-lightPurple hover:text-evo-lime hover:font-bold transition-colors"
         >
           HOME
         </Link>
         <Link
           to="/catalog"
-          className="text-[#ba68c8] hover:text-[#9ff818] transition-colors"
+          className="text-evo-lightPurple hover:text-evo-lime transition-colors"
         >
           SERVICIOS
         </Link>
         <Link
           to="/cart"
-          className="text-[#ba68c8] hover:text-[#9ff818] transition-colors"
+          className="text-evo-lightPurple hover:text-evo-lime transition-colors"
         >
           CARRITO
         </Link>
@@ -83,7 +83,7 @@ export const NavBar = () => {
           </Link>
         )}
 
-        <div className="h-6 w-px bg-[#9ff818] mx-2"></div>
+        <div className="h-6 w-px bg-evo-lime mx-2"></div>
 
         {/* 👇 AQUÍ MOSTRAMOS EL NOMBRE 👇 */}
         {userName && (
