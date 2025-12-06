@@ -24,14 +24,19 @@ export const HomePage = () => {
 
         {/* 3. Portal 3D Central */}
         <div className="relative group cursor-pointer">
-
           <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[300px] h-[300px] bg-[#9c27b0]/30 blur-[100px] -z-10 pointer-events-none" />
         </div>
 
         {/* 4. Botón Holográfico "SÉ PARTE" */}
         <div className="mt-12">
           {/* Cambié la navegación al catálogo o registro, según prefieras */}
-          <HolographicButton onClick={() => navigate("/catalog")} />
+          {/* <HolographicButton onClick={() => navigate("/catalog")} /> */}
+          <HolographicButton
+            onClick={() => navigate("/catalog")}
+            withArrow={true} // Activamos la flecha
+          >
+           Servicios
+          </HolographicButton>
         </div>
       </div>
 
