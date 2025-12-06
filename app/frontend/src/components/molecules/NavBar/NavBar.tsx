@@ -83,7 +83,7 @@ export const NavBar = () => {
           isOpen ? "translate-x-0" : "-translate-x-full"
         }`}
       >
-        <div className="flex flex-col h-full pt-24 px-6 gap-8">
+        <div className="flex flex-col h-screen pt-24 px-6 gap-8 bg-evo-bg/95">
           {/* Reutilizamos los links pero en columna */}
           <NavLinks
             showAdminPanel={showAdminPanel}
@@ -99,18 +99,27 @@ export const NavBar = () => {
 };
 
 // 👇 COMPONENTE AUXILIAR PARA NO REPETIR CÓDIGO (LINKS)
+type NavLinksProps = {
+  showAdminPanel: boolean;
+  userName: string;
+  handleLogout: () => void;
+  isMobile?: boolean;
+  onLinkClick?: () => void;
+};
+
 const NavLinks = ({
   showAdminPanel,
   userName,
   handleLogout,
   isMobile = false,
-  onLinkClick,
-}) => {
+  onLinkClick = () => {},
+}: NavLinksProps) => {
   const baseLinkClass =
     "text-evo-lightPurple hover:text-evo-lime transition-colors";
 
   return (
     <>
+    
       <Link
         to="/"
         onClick={onLinkClick}
