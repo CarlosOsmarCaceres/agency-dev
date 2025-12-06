@@ -31,7 +31,7 @@ export const HomePage = () => {
       <div className="absolute bottom-0 left-0 w-[500px] h-[500px] bg-cyan-500/10 rounded-full blur-[100px] pointer-events-none" />
 
       {/* Contenido Principal (z-10 para estar encima del fondo) */}
-      <div className="relative z-10 flex flex-col items-center gap-8 w-full max-w-7xl px-4">
+      <div className="relative z-10 flex flex-col items-center gap-2 md:gap-6 w-full max-w-7xl px-4">
         {/* 2. Texto Glitch "ESTAMOS EVOLUCIONANDO" */}
         <EvolutionText />
 
@@ -41,7 +41,7 @@ export const HomePage = () => {
         </div>
 
         {/* 4. Botón Holográfico "SÉ PARTE" */}
-        <div className="mt-12">
+        <div className="">
           {/* Cambié la navegación al catálogo o registro, según prefieras */}
           {/* <HolographicButton onClick={() => navigate("/catalog")} /> */}
           <HolographicButton

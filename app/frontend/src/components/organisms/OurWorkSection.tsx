@@ -34,20 +34,20 @@ export const OurWorkSection = () => {
   return (
     <section
       id="nuestro-trabajo"
-      className="relative py-24 overflow-hidden scroll-mt-24 z-index-20"
+      className="relative py-14 overflow-hidden scroll-mt-24 z-index-20"
     >
       {/* Elementos decorativos de fondo (Glows fijos) */}
       {/* <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-violet-600/10 rounded-full blur-[100px] pointer-events-none" />
       <div className="absolute bottom-0 left-0 w-[500px] h-[500px] bg-cyan-500/10 rounded-full blur-[100px] pointer-events-none" /> */}
 
-      <div className="max-w-7xl mx-auto px-6 relative z-10">
+      <div className="max-w-7xl mx-auto px-2 relative z-10">
         {/* ENCABEZADO (Sin cambios) */}
         <div className="text-center mb-16 max-w-3xl mx-auto">
           <motion.span
             initial={{ opacity: 0, y: 10 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="inline-block px-3 py-1 mb-4 text-xs font-mono tracking-[0.2em] text-evo-lime border border-evo-lime/30 rounded-full bg-evo-lime/5"
+            className="inline-block px-3 py-1 mb-4 text-md font-mono tracking-[0.2em] text-evo-lime border border-evo-lime/30 rounded-full bg-evo-lime/5"
           >
             NUESTRO TRABAJO
           </motion.span>
@@ -57,7 +57,7 @@ export const OurWorkSection = () => {
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.1 }}
             viewport={{ once: true }}
-            className="text-4xl md:text-5xl font-display font-bold text-white mb-6"
+            className="text-4xl md:text-5xl font-display font-bold text-white my-6"
           >
             Presencia y{" "}
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-violet-400 to-cyan-400">

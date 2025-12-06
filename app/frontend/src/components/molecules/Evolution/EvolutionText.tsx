@@ -1,9 +1,10 @@
 import { motion } from "framer-motion";
-
+// 👇 Importamos el nuevo átomo
+import { TypewriterText } from "../../atoms/TypewriterText/TypewriterText";
 
 export const EvolutionText = () => {
   return (
-    <div className="relative text-center p-4 pt-28">
+    <div className="relative text-center p-4 pt-28 md:pt-[15%]">
       <div className="relative inline-block">
         {/* Texto Principal */}
         <h1 className="text-5xl md:text-7xl font-display font-black text-transparent bg-clip-text bg-gradient-to-r from-white via-evo-lightPurple to-evo-lime animate-pulse">
@@ -21,16 +22,15 @@ export const EvolutionText = () => {
           transition={{ repeat: Infinity, duration: 3, ease: "linear" }}
         />
       </div>
-      <div className="flex justify-center">
-        
-        <p className="text-evo-lightPurple max-w-[50rem] font-mono mt-4 text-sm md:text-base text-center tracking-widest">
-          En SomosDev, combinamos innovación y tecnología para llevar tu negocio
-          al siguiente nivel. Nuestro enfoque está en crear experiencias digitales
-          únicas que resalten en el mundo digital.
-        </p>
 
+      <div className="flex justify-center mt-4">
+        {/* 👇 REEMPLAZO DE <p> POR <TypewriterText> */}
+        <TypewriterText
+          text="En SomosDev, combinamos innovación y tecnología para llevar tu negocio al siguiente nivel. Nuestro enfoque está en crear experiencias digitales únicas que resalten en el mundo digital."
+          className="text-evo-lightPurple max-w-[50rem] font-mono mt-4 text-md md:text-lg text-center tracking-widest"
+          delay={0.5} // Espera medio segundo después de que carga el título
+        />
       </div>
-
     </div>
   );
 };
