@@ -24,9 +24,7 @@ export const HomePage = () => {
 
         {/* 3. Portal 3D Central */}
         <div className="relative group cursor-pointer">
-          {/* <EvolutionPortal /> */}
 
-          {/* Efecto glow (resplandor) violeta detrás del portal */}
           <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[300px] h-[300px] bg-[#9c27b0]/30 blur-[100px] -z-10 pointer-events-none" />
         </div>
 

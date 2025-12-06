@@ -1,8 +1,7 @@
 import React, { useId } from "react"; // 1. Importar useId
 
-export interface InputProps
-  extends React.InputHTMLAttributes<HTMLInputElement> {
-  label: string;
+export interface InputProps extends React.InputHTMLAttributes<HTMLInputElement> {
+  label: React.ReactNode;
   error?: string;
 }
 
