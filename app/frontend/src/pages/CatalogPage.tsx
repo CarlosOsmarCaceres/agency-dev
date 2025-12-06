@@ -35,16 +35,18 @@ export const CatalogPage = () => {
 
   return (
     <div className="min-h-screen bg-gray-900 relative overflow-hidden">
-      
+      <div className="relative group cursor-pointer">
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[300px] h-[300px] bg-[#9c27b0]/30 blur-[100px] -z-10 pointer-events-none" />
+      </div>
+
       {/* 1. Fondo Ambiental (Glows fijos para no afectar rendimiento) */}
       <div className="absolute top-0 left-1/4 w-[500px] h-[500px] bg-violet-600/20 rounded-full blur-[120px] -z-10" />
       <div className="absolute bottom-0 right-1/4 w-[500px] h-[500px] bg-cyan-500/10 rounded-full blur-[120px] -z-10" />
 
       <div className="max-w-7xl mx-auto px-6 py-20">
-        
         {/* 2. HEADER: Estética Neon/Gradient */}
         <div className="text-center mb-16 space-y-4">
-          <motion.h1 
+          <motion.h1
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
             className="text-4xl md:text-5xl font-display font-black text-transparent bg-clip-text bg-gradient-to-r from-white via-evo-lightPurple to-evo-lime"
@@ -64,7 +66,7 @@ export const CatalogPage = () => {
           </div>
         ) : (
           /* 4. GRID DE TARJETAS (Glassmorphism) */
-          <motion.div 
+          <motion.div
             variants={containerVariants}
             initial="hidden"
             animate="visible"
@@ -103,7 +105,9 @@ export const CatalogPage = () => {
                 {/* Footer de la Tarjeta: Precio y Acción */}
                 <div className="flex justify-between items-center mt-4 pt-4 border-t border-white/5 relative z-10">
                   <div className="flex flex-col">
-                    <span className="text-xs text-gray-500 font-mono uppercase">Inversión</span>
+                    <span className="text-xs text-gray-500 font-mono uppercase">
+                      Inversión
+                    </span>
                     <span className="text-2xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 to-cyan-400">
                       ${service.price}
                     </span>
