@@ -7,6 +7,7 @@ import { useNavigate } from "react-router-dom";
 
 import { EvolutionText } from "../components/molecules/Evolution/EvolutionText";
 import { HolographicButton } from "../components/molecules/Evolution/HolographicButton";
+import { OurWorkSection } from "../components/organisms/OurWorkSection";
 
 export const HomePage = () => {
   const navigate = useNavigate();
@@ -38,6 +39,7 @@ export const HomePage = () => {
            Servicios
           </HolographicButton>
         </div>
+        <OurWorkSection />
       </div>
 
       {/* Footer simple */}
