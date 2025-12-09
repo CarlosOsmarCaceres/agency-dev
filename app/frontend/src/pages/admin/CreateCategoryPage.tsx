@@ -32,8 +32,8 @@ export const CreateCategoryPage = () => {
   };
 
   return (
-    <div className="max-w-lg mx-auto bg-white p-8 rounded-lg shadow-md border border-gray-100 mt-10">
-      <h2 className="text-2xl font-bold mb-6 text-gray-800 border-b pb-2">
+    <div className="max-w-lg mx-auto bg-white text-evo-bg p-8 rounded-lg shadow-md border border-gray-100 mt-10">
+      <h2 className="text-2xl font-bold mb-6  border-b pb-2">
         Nueva Categoría
       </h2>
 

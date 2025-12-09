@@ -42,7 +42,7 @@ export const CreateServicePage = () => {
 
        
       alert("✅ Servicio creado con éxito");
-      navigate("/catalog"); // Volver al catálogo público para verlo
+      navigate("/admin/services"); // Volver al catálogo público para verlo
     } catch (error) {
       if (error instanceof Error) alert(error.message);
     } finally {
@@ -56,7 +56,7 @@ export const CreateServicePage = () => {
         Crear Nuevo Servicio
       </h2>
 
-      <form onSubmit={handleSubmit} className="flex flex-col gap-4">
+      <form onSubmit={handleSubmit} className="flex flex-col gap-4 text-black">
         <Input
           label="Nombre del Servicio"
           value={formData.name}

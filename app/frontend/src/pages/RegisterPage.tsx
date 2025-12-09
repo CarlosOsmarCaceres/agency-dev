@@ -13,7 +13,7 @@ export const RegisterPage = () => {
   }) => {
     try {
       await register(data);
-      window.location.href = "/";
+      window.location.href = "/loguin";
     } catch (err) {
       console.error("Error en registro:", err);
     }
