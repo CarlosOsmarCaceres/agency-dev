@@ -46,7 +46,7 @@ export const NavBar = () => {
           window.scrollTo({ top: 0, behavior: "smooth" }); // Click en Logo va arriba
         }}
       >
-        Somos<span className="text-evo-lime">Dev</span>
+        <img src="../../../../public/img/Logo-SomoDev-Transparent-rect.png" className="w-24" alt="" />
       </Link>
 
       <button
@@ -165,7 +165,7 @@ const NavLinks = ({
     // ✨ ESTILO ACTIVO: Verde + Subrayado (solo en Desktop para el subrayado se ve mejor)
     const activeStyle = isActive
       ? "text-evo-lime font-bold md:border-b-2 md:border-evo-lime"
-      : "text-evo-lightPurple";
+      : "text-evo-purple";
 
     return `${base} ${mobileStyles} ${activeStyle}`;
   };

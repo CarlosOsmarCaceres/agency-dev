@@ -13,10 +13,10 @@ export default {
                     dark: '#0a051e',       // Fondo principal (Violeta muy oscuro)
                     bg: '#101728',      // Fondo alternativo (Azul muy oscuro)
                     deep: '#1a0f2e',       // Fondo secundario
-                    purple: '#9c27b0',     // Violeta Neón
+                    purple: '#8c52ff',     // Violeta Neón
                     lightPurple: '#ba68c8',// Violeta Claro
                     green: '#4caf50',      // Verde
-                    lime: '#9ff818',       // Verde Lima ácido
+                    lime: '#5ce1e6',       // Verde Lima ácido
                 }
             },
             fontFamily: {

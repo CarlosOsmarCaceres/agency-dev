@@ -7,7 +7,7 @@ export const EvolutionText = () => {
     <div className="relative text-center p-4 pt-28 md:pt-[15%]">
       <div className="relative inline-block">
         {/* Texto Principal */}
-        <h1 className="text-5xl md:text-7xl font-display font-black text-transparent bg-clip-text bg-gradient-to-r from-white via-evo-lightPurple to-evo-lime animate-pulse">
+        <h1 className="text-5xl md:text-7xl font-display font-black text-transparent bg-clip-text bg-gradient-to-r from-white via-evo-purple to-evo-lime animate-pulse">
           Transforma tu visión en realidad digital
         </h1>
 
@@ -27,7 +27,7 @@ export const EvolutionText = () => {
         {/* 👇 REEMPLAZO DE <p> POR <TypewriterText> */}
         <TypewriterText
           text="En SomosDev, combinamos innovación y tecnología para llevar tu negocio al siguiente nivel. Nuestro enfoque está en crear experiencias digitales únicas que resalten en el mundo digital."
-          className="text-evo-lightPurple max-w-[50rem] font-mono mt-4 text-md md:text-lg text-center tracking-widest"
+          className="text-evo-purple max-w-[50rem] font-mono mt-4 text-md md:text-lg text-center tracking-widest"
           delay={0.5} // Espera medio segundo después de que carga el título
         />
       </div>
