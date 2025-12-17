@@ -22,7 +22,7 @@ export const Footer = () => {
               className="text-2xl font-bold text-white tracking-tight"
             >
               <img
-                src="../../../../public/img/Logo-SomoDev-Transparent-rect.png"
+                src="/img/Logo-SomoDev-Transparent-rect.png"
                 className="w-24"
                 alt=""
               />

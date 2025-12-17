@@ -46,7 +46,11 @@ export const NavBar = () => {
           window.scrollTo({ top: 0, behavior: "smooth" }); // Click en Logo va arriba
         }}
       >
-        <img src="../../../../public/img/Logo-SomoDev-Transparent-rect.png" className="w-24" alt="" />
+        <img
+          src="/img/Logo-SomoDev-Transparent-rect.png"
+          className="w-24"
+          alt=""
+        />
       </Link>
 
       <button
